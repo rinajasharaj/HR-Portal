@@ -1,1 +1,1 @@
-export * from './lib/time-feature/time-feature';
+export * from './lib/time-report/time-report';

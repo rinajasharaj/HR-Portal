@@ -1,1 +1,1 @@
-export * from './lib/leave-domain-api/leave-domain-api';
+export * from './lib/leave-summary/leave-summary';
