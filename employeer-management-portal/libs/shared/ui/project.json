@@ -1,10 +1,10 @@
 {
-  "name": "employees-domain-api",
+  "name": "shared-ui",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/employees/domain-api/src",
+  "sourceRoot": "libs/shared/ui/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": ["domain:employees", "type:domain-api"],
+  "tags": ["domain:shared", "type:ui"],
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint"

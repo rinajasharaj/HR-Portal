@@ -17,6 +17,38 @@
     "paths": {
       "@employeer-management-portal/employees-domain-api": [
         "./libs/employees/domain-api/src/index.ts"
+      ],
+      "@employeer-management-portal/leave-domain-api": [
+        "./libs/leave/domain-api/src/index.ts"
+      ],
+      "@employeer-management-portal/leave-feature": [
+        "./libs/leave/feature/src/index.ts"
+      ],
+      "@employeer-management-portal/leave-data-access": [
+        "./libs/leave/data-access/src/index.ts"
+      ],
+      "@employeer-management-portal/leave-ui": ["./libs/leave/ui/src/index.ts"],
+      "@employeer-management-portal/employees-feature": [
+        "./libs/employees/feature/src/index.ts"
+      ],
+      "@employeer-management-portal/employees-data-access": [
+        "./libs/employees/data-access/src/index.ts"
+      ],
+      "@employeer-management-portal/employees-ui": [
+        "./libs/employees/ui/src/index.ts"
+      ],
+      "@employeer-management-portal/time-domain-api": [
+        "./libs/time/domain-api/src/index.ts"
+      ],
+      "@employeer-management-portal/time-feature": [
+        "./libs/time/feature/src/index.ts"
+      ],
+      "@employeer-management-portal/time-data-access": [
+        "./libs/time/data-access/src/index.ts"
+      ],
+      "@employeer-management-portal/time-ui": ["./libs/time/ui/src/index.ts"],
+      "@employeer-management-portal/shared-ui": [
+        "./libs/shared/ui/src/index.ts"
       ]
     }
   },

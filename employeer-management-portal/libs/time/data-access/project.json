@@ -1,10 +1,10 @@
 {
-  "name": "employees-domain-api",
+  "name": "time-data-access",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/employees/domain-api/src",
+  "sourceRoot": "libs/time/data-access/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": ["domain:employees", "type:domain-api"],
+  "tags": ["domain:time", "type:data-access"],
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint"

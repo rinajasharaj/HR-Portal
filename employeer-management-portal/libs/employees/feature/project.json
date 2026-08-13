@@ -1,10 +1,10 @@
 {
-  "name": "employees-domain-api",
+  "name": "employees-feature",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/employees/domain-api/src",
+  "sourceRoot": "libs/employees/feature/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": ["domain:employees", "type:domain-api"],
+  "tags": ["domain:employees", "type:feature"],
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint"
