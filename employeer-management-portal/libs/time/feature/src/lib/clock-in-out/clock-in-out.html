@@ -1,0 +1,9 @@
+<lib-card title="Clock In/Out">
+  @if (clockedIn()) {
+    <p>Clocked in at {{ clockInTime() }}</p>
+    <lib-button (click)="clockOut()">Clock Out</lib-button>
+  } @else {
+    <p>Not clocked in</p>
+    <lib-button (click)="clockIn()">Clock In</lib-button>
+  }
+</lib-card>

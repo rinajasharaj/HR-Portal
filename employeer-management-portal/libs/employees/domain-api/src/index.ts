@@ -1,1 +1,1 @@
-export * from './lib/employees-domain-api/employees-domain-api';
+export * from './lib/models/employee.model';

@@ -1,0 +1,15 @@
+<lib-card title="Employees">
+  <lib-table
+    [columns]="['Name', 'Role', 'Department']"
+    [totalItems]="employees().length"
+    [pageSize]="pageSize"
+  >
+    @for (emp of pagedEmployees(); track emp.name) {
+      <tr>
+        <td>{{ emp.name }}</td>
+        <td>{{ emp.role }}</td>
+        <td>{{ emp.department }}</td>
+      </tr>
+    }
+  </lib-table>
+</lib-card>

@@ -1,0 +1,15 @@
+<lib-card title="Pending Leave Requests">
+  <lib-table [columns]="['Employee', 'Dates', 'Reason', 'Actions']" [totalItems]="pendingRequests().length" [pageSize]="10">
+    @for (req of pendingRequests(); track req.employeeName) {
+      <tr>
+        <td>{{ req.employeeName }}</td>
+        <td>{{ req.startDate }} - {{ req.endDate }}</td>
+        <td>{{ req.reason }}</td>
+        <td>
+          <lib-button (click)="approve(req)">Approve</lib-button>
+          <lib-button variant="secondary" (click)="reject(req)">Reject</lib-button>
+        </td>
+      </tr>
+    }
+  </lib-table>
+</lib-card>

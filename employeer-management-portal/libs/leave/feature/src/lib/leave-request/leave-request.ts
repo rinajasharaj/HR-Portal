@@ -1,30 +1,26 @@
 import { Component, signal } from '@angular/core';
+import { Input as LibInput, ButtonComponent, Card } from '@employeer-management-portal/shared-ui';
+import { LeaveRequest } from '@employeer-management-portal/leave-domain-api';
 
 @Component({
   selector: 'lib-leave-request',
-  imports: [],
+  imports: [LibInput, ButtonComponent, Card],
   templateUrl: './leave-request.html',
   styleUrl: './leave-request.css',
 })
-export class LeaveRequest {
+export class LeaveRequestForm {
   startDate = signal('');
   endDate = signal('');
   reason = signal('');
-  submitted = signal(false);
-
-  updateStartDate(value: string) {
-    this.startDate.set(value);
-  }
-
-  updateEndDate(value: string) {
-    this.endDate.set(value);
-  }
-
-  updateReason(value: string) {
-    this.reason.set(value);
-  }
 
   submit() {
-    this.submitted.set(true);
+    const request: LeaveRequest = {
+      employeeName: 'Ana Marku',
+      startDate: this.startDate(),
+      endDate: this.endDate(),
+      reason: this.reason(),
+      status: 'pending'
+    };
+    console.log('Leave request submitted (mock):', request);
   }
 }

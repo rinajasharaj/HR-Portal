@@ -1,0 +1,11 @@
+<lib-card title="This Week's Hours">
+  <lib-table [columns]="['Day', 'Hours']" [totalItems]="entries().length" [pageSize]="7">
+    @for (entry of entries(); track entry.day) {
+      <tr>
+        <td>{{ entry.day }}</td>
+        <td>{{ entry.hours }}</td>
+      </tr>
+    }
+  </lib-table>
+  <p>Total: {{ totalHours() }} hours</p>
+</lib-card>

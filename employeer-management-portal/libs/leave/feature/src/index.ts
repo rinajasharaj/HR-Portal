@@ -2,3 +2,4 @@
 // import * as timeFeature from '@employeer-management-portal/time-feature';
 
 export * from './lib/leave-request/leave-request';
+export * from './lib/leave-approval-queue/leave-approval-queue';
