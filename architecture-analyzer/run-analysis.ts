@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { readFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import OpenAI from 'openai';
 
 const client = new OpenAI();
@@ -161,15 +161,59 @@ async function explainFinding(evidence: any) {
     return JSON.parse(response.choices[0].message.content!);
 }
 
+// --- Validate the AI's response against the evidence ---
+
+function validateResponse(evidence: any, aiResult: any): string[] {
+    const warnings: string[] = [];
+
+    const allowedNames = new Set<string>();
+    for (const value of Object.values(evidence)) {
+        if (typeof value === 'string') allowedNames.add(value.toLowerCase());
+        if (Array.isArray(value)) value.forEach(v => typeof v === 'string' && allowedNames.add(v.toLowerCase()));
+    }
+
+    const allLibraryNames = Object.keys(nodes).map(n => n.toLowerCase());
+    const fullText = (aiResult.explanation + ' ' + aiResult.consequences + ' ' + aiResult.recommendedFix).toLowerCase();
+
+    for (const libName of allLibraryNames) {
+        const mentionedInResponse = fullText.includes(libName);
+        const wasInEvidence = allowedNames.has(libName);
+
+        if (mentionedInResponse && !wasInEvidence) {
+            warnings.push(`AI mentioned "${libName}" but it wasn't in the evidence sent to it`);
+        }
+    }
+
+    return warnings;
+}
+
+// --- Run everything and save the results ---
+
 async function main() {
     console.log(`Found ${allFindings.length} findings. Explaining each...\n`);
 
+    const analysisRun: any[] = [];
+
     for (const finding of allFindings) {
         const aiResult = await explainFinding(finding);
+        const warnings = validateResponse(finding, aiResult);
+
         console.log('FINDING:', finding.findingType, '-', finding.source ?? finding.library ?? finding.domainA);
-        console.log(JSON.stringify(aiResult, null, 2));
+        console.log(warnings.length > 0 ? '⚠️ Warnings found' : '✅ Grounded');
         console.log('---');
+
+        analysisRun.push({
+            evidence: finding,
+            aiExplanation: aiResult,
+            validationWarnings: warnings
+        });
     }
+
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    const filename = `analysis-run-${timestamp}.json`;
+    writeFileSync(filename, JSON.stringify(analysisRun, null, 2));
+
+    console.log(`\nSaved full analysis run to ${filename}`);
 }
 
 main();

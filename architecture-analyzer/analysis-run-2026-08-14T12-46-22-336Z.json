@@ -1,0 +1,93 @@
+[
+  {
+    "evidence": {
+      "findingType": "boundary-violation",
+      "source": "leave-feature",
+      "sourceDomain": "leave",
+      "target": "employees-data-access",
+      "targetDomain": "employees",
+      "targetType": "data-access",
+      "rule": "libraries can only import another domain's domain-api, not its internal layers"
+    },
+    "aiExplanation": {
+      "explanation": "The finding indicates that the feature within the 'leave' domain is improperly accessing internal layers of the 'employees' domain instead of adhering to the architecture rule that permits interaction only at the domain level via the domain-api. This means that the leave feature is not allowed to directly use the internal components or services of the employees domain, which could lead to tight coupling between domains.",
+      "consequences": "This boundary violation can lead to increased complexity, making the system harder to maintain or evolve over time. It can also result in unintended side-effects when changes are made to the employees domain, affecting the leave functionality and potentially causing bugs or breaking changes. Additionally, it compromises the separation of concerns that is critical for scalability and modularity in a well-structured architecture.",
+      "recommendedFix": "Refactor the code in the leave feature to only interact with the employees domain through its exposed domain-api. This will involve creating or utilizing API endpoints or services that provide the necessary data access without directly linking to the internal layers of the employees domain."
+    },
+    "validationWarnings": []
+  },
+  {
+    "evidence": {
+      "findingType": "boundary-violation",
+      "source": "leave-feature",
+      "sourceDomain": "leave",
+      "target": "time-feature",
+      "targetDomain": "time",
+      "targetType": "feature",
+      "rule": "libraries can only import another domain's domain-api, not its internal layers"
+    },
+    "aiExplanation": {
+      "explanation": "The architecture finding indicates that there is a boundary violation between two domains in the frontend architecture: the 'leave' domain and the 'time' domain. Specifically, a feature within the 'leave' domain is improperly importing or utilizing internal layers of the 'time' domain instead of adhering to the rule that allows only imports from a domain's external interface or API.",
+      "consequences": "This violation can lead to tighter coupling between the two domains, making the codebase harder to maintain and scale. If the internal implementation of the 'time' domain changes, it could unexpectedly break the functionality in the 'leave' domain, leading to increased risk during development and deployment.",
+      "recommendedFix": "Refactor the 'leave' feature to utilize the public domain API of the 'time' domain instead of its internal layers. This will ensure that the dependencies adhere to the architecture guideline of interaction only through domain APIs."
+    },
+    "validationWarnings": []
+  },
+  {
+    "evidence": {
+      "findingType": "untagged-library",
+      "library": "shared-ui",
+      "rule": "every library should have a domain: and type: tag"
+    },
+    "aiExplanation": {
+      "explanation": "The finding highlights that the 'shared-ui' library is missing the required 'domain:' and 'type:' tags. These tags are important for categorizing and defining the purpose of the library within the overall architecture of the frontend project.",
+      "consequences": "Without proper tagging, it becomes challenging to understand the library's context and usage, which can lead to confusion among developers and potential issues in dependency management or integration with other parts of the system.",
+      "recommendedFix": "Add the necessary 'domain:' and 'type:' tags to the 'shared-ui' library to clearly define its purpose and categorize it appropriately in the project's architecture."
+    },
+    "validationWarnings": []
+  },
+  {
+    "evidence": {
+      "findingType": "untagged-library",
+      "library": "time-ui",
+      "rule": "every library should have a domain: and type: tag"
+    },
+    "aiExplanation": {
+      "explanation": "The finding indicates that the library 'time-ui' is not appropriately tagged with 'domain' and 'type' metadata in the architecture documentation or codebase.",
+      "consequences": "This lack of tagging may lead to difficulties in maintaining, categorizing, and utilizing the library within the larger project, potentially causing confusion about its purpose and use cases.",
+      "recommendedFix": "To resolve this issue, add the necessary 'domain' and 'type' tags to the 'time-ui' library to ensure it complies with the architectural standards."
+    },
+    "validationWarnings": []
+  },
+  {
+    "evidence": {
+      "findingType": "circular-dependency",
+      "domainA": "leave",
+      "domainB": "time",
+      "rule": "domains should not depend on each other in both directions"
+    },
+    "aiExplanation": {
+      "explanation": "The finding indicates that there is a circular dependency between the 'leave' and 'time' domains, meaning that 'leave' depends on 'time' for certain functionality, while simultaneously, 'time' also depends on 'leave'. This creates a cycle where each domain is reliant on the other, which can complicate code organization and maintenance.",
+      "consequences": "Circular dependencies can lead to issues such as code that is difficult to test, increased coupling between modules, potential for deadlocks, and challenges in refactoring. It can make it harder to understand the flow of the application and can introduce bugs that are difficult to track down due to the interdependencies.",
+      "recommendedFix": "To resolve the circular dependency, analyze the functionality required in both domains and refactor the code to eliminate the mutual dependencies. This can be achieved by introducing a third domain that both can depend on, or by redesigning one of the domains to reduce its dependency on the other."
+    },
+    "validationWarnings": []
+  },
+  {
+    "evidence": {
+      "findingType": "god-library",
+      "library": "shared-ui",
+      "ownDomain": "none",
+      "foreignDomainExports": [
+        "export * from './lib/leave-status-badge/leave-status-badge.component';"
+      ],
+      "rule": "a library should not export code belonging to another known domain"
+    },
+    "aiExplanation": {
+      "explanation": "The finding indicates that the 'shared-ui' library is exporting a component ('leave-status-badge.component') that belongs to a different domain or module, which is against the architectural rule that disallows libraries from exporting code that does not belong to them. This can lead to tightly coupled components and hinder modularity.",
+      "consequences": "The consequence of this finding is an increased risk of unintended dependencies and complexity within the application. It may lead to difficulties in maintenance, hinder scalability, and complicate testing due to the interdependencies of components across different domains.",
+      "recommendedFix": "The recommended fix is to refactor the 'leave-status-badge' component so that it resides within its own domain or module and remove its export from the 'shared-ui' library. Each library should only export components or modules that are specifically related to its own domain."
+    },
+    "validationWarnings": []
+  }
+]
