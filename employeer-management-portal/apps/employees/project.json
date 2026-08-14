@@ -1,33 +1,33 @@
 {
-  "name": "employeer-management-portal",
+  "name": "employees",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "prefix": "app",
-  "sourceRoot": "apps/employeer-management-portal/src",
+  "sourceRoot": "apps/employees/src",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@angular-architects/native-federation:build",
-      "defaultConfiguration": "production",
       "options": {
         "cacheExternalArtifacts": true,
-        "tsConfig": "apps/employeer-management-portal/tsconfig.federation.json"
+        "tsConfig": "apps/employees/tsconfig.federation.json"
       },
       "configurations": {
         "production": {
-          "target": "employeer-management-portal:esbuild:production"
+          "target": "employees:esbuild:production"
         },
         "development": {
-          "target": "employeer-management-portal:esbuild:development",
+          "target": "employees:esbuild:development",
           "dev": true
         }
-      }
+      },
+      "defaultConfiguration": "production"
     },
     "serve": {
       "executor": "@angular-architects/native-federation:build",
       "options": {
-        "target": "employeer-management-portal:serve-original:development",
-        "tsConfig": "apps/employeer-management-portal/tsconfig.federation.json",
+        "target": "employees:serve-original:development",
+        "tsConfig": "apps/employees/tsconfig.federation.json",
         "rebuildDelay": 500,
         "cacheExternalArtifacts": true,
         "dev": true,
@@ -42,8 +42,8 @@
       "continuous": true,
       "executor": "@nx/web:file-server",
       "options": {
-        "buildTarget": "employeer-management-portal:build",
-        "staticFilePath": "dist/apps/employeer-management-portal/browser",
+        "buildTarget": "employees:build",
+        "staticFilePath": "dist/apps/employees/browser",
         "spa": true
       }
     },
@@ -54,18 +54,18 @@
       ],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/apps/employeer-management-portal",
-        "browser": "apps/employeer-management-portal/src/main.ts",
-        "tsConfig": "apps/employeer-management-portal/tsconfig.app.json",
+        "outputPath": "dist/apps/employees",
+        "browser": "apps/employees/src/main.ts",
+        "tsConfig": "apps/employees/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/employeer-management-portal/public"
+            "input": "apps/employees/public"
           }
         ],
         "styles": [
-          "apps/employeer-management-portal/src/styles.scss"
+          "apps/employees/src/styles.scss"
         ],
         "polyfills": [
           "es-module-shims"
@@ -98,16 +98,16 @@
       "continuous": true,
       "executor": "@angular/build:dev-server",
       "defaultConfiguration": "development",
-      "options": {
-        "port": 4200
-      },
       "configurations": {
         "production": {
-          "buildTarget": "employeer-management-portal:esbuild:production"
+          "buildTarget": "employees:esbuild:production"
         },
         "development": {
-          "buildTarget": "employeer-management-portal:esbuild:development"
+          "buildTarget": "employees:esbuild:development"
         }
+      },
+      "options": {
+        "port": 4201
       }
     }
   }

@@ -1,8 +1,6 @@
 import { initFederation } from '@angular-architects/native-federation';
 
-initFederation({
-  employees: "http://localhost:4201/remoteEntry.json"
-}, {
+initFederation({}, {
   hostRemoteEntry: { url: "./remoteEntry.json" }
 })
   .catch(err => console.error(err))
