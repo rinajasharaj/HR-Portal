@@ -1,0 +1,12 @@
+<h1>Architecture Analyzer</h1>
+
+<button (click)="analyze('t0')">Analyze T0 (clean)</button>
+<button (click)="analyze('t1')">Analyze T1 (eroded)</button>
+<button (click)="analyze('t2')">Analyze T2 (restructured)</button>
+
+<div *ngIf="loading()">Loading...</div>
+
+<div *ngFor="let item of results()">
+  <h3>{{ item.evidence.findingType }} - {{ item.evidence.source || item.evidence.library || item.evidence.domainA }}</h3>
+  <p>{{ item.aiExplanation.explanation }}</p>
+</div>

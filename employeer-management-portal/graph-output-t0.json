@@ -1,0 +1,574 @@
+{
+  "graph": {
+    "nodes": {
+      "employeer-management-portal": {
+        "name": "employeer-management-portal",
+        "type": "app",
+        "data": {
+          "root": "apps/employeer-management-portal",
+          "targets": {
+            "build": {
+              "cache": true,
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ],
+              "executor": "@angular/build:application",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "defaultConfiguration": "production",
+              "options": {
+                "outputPath": "dist/apps/employeer-management-portal",
+                "browser": "apps/employeer-management-portal/src/main.ts",
+                "tsConfig": "apps/employeer-management-portal/tsconfig.app.json",
+                "inlineStyleLanguage": "scss",
+                "assets": [
+                  {
+                    "glob": "**/*",
+                    "input": "apps/employeer-management-portal/public"
+                  }
+                ],
+                "styles": [
+                  "apps/employeer-management-portal/src/styles.scss"
+                ]
+              },
+              "configurations": {
+                "production": {
+                  "budgets": [
+                    {
+                      "type": "initial",
+                      "maximumWarning": "500kb",
+                      "maximumError": "1mb"
+                    },
+                    {
+                      "type": "anyComponentStyle",
+                      "maximumWarning": "4kb",
+                      "maximumError": "8kb"
+                    }
+                  ],
+                  "outputHashing": "all"
+                },
+                "development": {
+                  "optimization": false,
+                  "extractLicenses": false,
+                  "sourceMap": true
+                }
+              },
+              "parallelism": true
+            },
+            "lint": {
+              "cache": true,
+              "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/.eslintrc.json",
+                "{workspaceRoot}/.eslintignore",
+                "{workspaceRoot}/eslint.config.mjs",
+                "{workspaceRoot}/tools/eslint-rules/**/*"
+              ],
+              "executor": "@nx/eslint:lint",
+              "configurations": {},
+              "options": {},
+              "parallelism": true
+            },
+            "serve": {
+              "continuous": true,
+              "executor": "@angular/build:dev-server",
+              "defaultConfiguration": "development",
+              "configurations": {
+                "production": {
+                  "buildTarget": "employeer-management-portal:build:production"
+                },
+                "development": {
+                  "buildTarget": "employeer-management-portal:build:development"
+                }
+              },
+              "options": {},
+              "parallelism": true
+            },
+            "serve-static": {
+              "continuous": true,
+              "executor": "@nx/web:file-server",
+              "options": {
+                "buildTarget": "employeer-management-portal:build",
+                "staticFilePath": "dist/apps/employeer-management-portal/browser",
+                "spa": true
+              },
+              "configurations": {},
+              "parallelism": true
+            }
+          },
+          "name": "employeer-management-portal",
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "projectType": "application",
+          "prefix": "app",
+          "sourceRoot": "apps/employeer-management-portal/src",
+          "tags": [],
+          "implicitDependencies": []
+        }
+      },
+      "employees-data-access": {
+        "name": "employees-data-access",
+        "type": "lib",
+        "data": {
+          "root": "libs/employees/data-access",
+          "targets": {
+            "lint": {
+              "cache": true,
+              "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/.eslintrc.json",
+                "{workspaceRoot}/.eslintignore",
+                "{workspaceRoot}/eslint.config.mjs",
+                "{workspaceRoot}/tools/eslint-rules/**/*"
+              ],
+              "executor": "@nx/eslint:lint",
+              "configurations": {},
+              "options": {},
+              "parallelism": true
+            }
+          },
+          "name": "employees-data-access",
+          "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/employees/data-access/src",
+          "prefix": "lib",
+          "projectType": "library",
+          "tags": [
+            "domain:employees",
+            "type:data-access"
+          ],
+          "implicitDependencies": []
+        }
+      },
+      "employees-domain-api": {
+        "name": "employees-domain-api",
+        "type": "lib",
+        "data": {
+          "root": "libs/employees/domain-api",
+          "targets": {
+            "lint": {
+              "cache": true,
+              "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/.eslintrc.json",
+                "{workspaceRoot}/.eslintignore",
+                "{workspaceRoot}/eslint.config.mjs",
+                "{workspaceRoot}/tools/eslint-rules/**/*"
+              ],
+              "executor": "@nx/eslint:lint",
+              "configurations": {},
+              "options": {},
+              "parallelism": true
+            }
+          },
+          "name": "employees-domain-api",
+          "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/employees/domain-api/src",
+          "prefix": "lib",
+          "projectType": "library",
+          "tags": [
+            "domain:employees",
+            "type:domain-api"
+          ],
+          "implicitDependencies": []
+        }
+      },
+      "employees-feature": {
+        "name": "employees-feature",
+        "type": "lib",
+        "data": {
+          "root": "libs/employees/feature",
+          "targets": {
+            "lint": {
+              "cache": true,
+              "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/.eslintrc.json",
+                "{workspaceRoot}/.eslintignore",
+                "{workspaceRoot}/eslint.config.mjs",
+                "{workspaceRoot}/tools/eslint-rules/**/*"
+              ],
+              "executor": "@nx/eslint:lint",
+              "configurations": {},
+              "options": {},
+              "parallelism": true
+            }
+          },
+          "name": "employees-feature",
+          "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/employees/feature/src",
+          "prefix": "lib",
+          "projectType": "library",
+          "tags": [
+            "domain:employees",
+            "type:feature"
+          ],
+          "implicitDependencies": []
+        }
+      },
+      "leave-data-access": {
+        "name": "leave-data-access",
+        "type": "lib",
+        "data": {
+          "root": "libs/leave/data-access",
+          "targets": {
+            "lint": {
+              "cache": true,
+              "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/.eslintrc.json",
+                "{workspaceRoot}/.eslintignore",
+                "{workspaceRoot}/eslint.config.mjs",
+                "{workspaceRoot}/tools/eslint-rules/**/*"
+              ],
+              "executor": "@nx/eslint:lint",
+              "configurations": {},
+              "options": {},
+              "parallelism": true
+            }
+          },
+          "name": "leave-data-access",
+          "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/leave/data-access/src",
+          "prefix": "lib",
+          "projectType": "library",
+          "tags": [
+            "domain:leave",
+            "type:data-access"
+          ],
+          "implicitDependencies": []
+        }
+      },
+      "leave-domain-api": {
+        "name": "leave-domain-api",
+        "type": "lib",
+        "data": {
+          "root": "libs/leave/domain-api",
+          "targets": {
+            "lint": {
+              "cache": true,
+              "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/.eslintrc.json",
+                "{workspaceRoot}/.eslintignore",
+                "{workspaceRoot}/eslint.config.mjs",
+                "{workspaceRoot}/tools/eslint-rules/**/*"
+              ],
+              "executor": "@nx/eslint:lint",
+              "configurations": {},
+              "options": {},
+              "parallelism": true
+            }
+          },
+          "name": "leave-domain-api",
+          "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/leave/domain-api/src",
+          "prefix": "lib",
+          "projectType": "library",
+          "tags": [
+            "domain:leave",
+            "type:domain-api"
+          ],
+          "implicitDependencies": []
+        }
+      },
+      "time-data-access": {
+        "name": "time-data-access",
+        "type": "lib",
+        "data": {
+          "root": "libs/time/data-access",
+          "targets": {
+            "lint": {
+              "cache": true,
+              "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/.eslintrc.json",
+                "{workspaceRoot}/.eslintignore",
+                "{workspaceRoot}/eslint.config.mjs",
+                "{workspaceRoot}/tools/eslint-rules/**/*"
+              ],
+              "executor": "@nx/eslint:lint",
+              "configurations": {},
+              "options": {},
+              "parallelism": true
+            }
+          },
+          "name": "time-data-access",
+          "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/time/data-access/src",
+          "prefix": "lib",
+          "projectType": "library",
+          "tags": [
+            "domain:time",
+            "type:data-access"
+          ],
+          "implicitDependencies": []
+        }
+      },
+      "time-domain-api": {
+        "name": "time-domain-api",
+        "type": "lib",
+        "data": {
+          "root": "libs/time/domain-api",
+          "targets": {
+            "lint": {
+              "cache": true,
+              "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/.eslintrc.json",
+                "{workspaceRoot}/.eslintignore",
+                "{workspaceRoot}/eslint.config.mjs",
+                "{workspaceRoot}/tools/eslint-rules/**/*"
+              ],
+              "executor": "@nx/eslint:lint",
+              "configurations": {},
+              "options": {},
+              "parallelism": true
+            }
+          },
+          "name": "time-domain-api",
+          "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/time/domain-api/src",
+          "prefix": "lib",
+          "projectType": "library",
+          "tags": [
+            "domain:time",
+            "type:domain-api"
+          ],
+          "implicitDependencies": []
+        }
+      },
+      "leave-feature": {
+        "name": "leave-feature",
+        "type": "lib",
+        "data": {
+          "root": "libs/leave/feature",
+          "targets": {
+            "lint": {
+              "cache": true,
+              "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/.eslintrc.json",
+                "{workspaceRoot}/.eslintignore",
+                "{workspaceRoot}/eslint.config.mjs",
+                "{workspaceRoot}/tools/eslint-rules/**/*"
+              ],
+              "executor": "@nx/eslint:lint",
+              "configurations": {},
+              "options": {},
+              "parallelism": true
+            }
+          },
+          "name": "leave-feature",
+          "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/leave/feature/src",
+          "prefix": "lib",
+          "projectType": "library",
+          "tags": [
+            "domain:leave",
+            "type:feature"
+          ],
+          "implicitDependencies": []
+        }
+      },
+      "employees-ui": {
+        "name": "employees-ui",
+        "type": "lib",
+        "data": {
+          "root": "libs/employees/ui",
+          "targets": {
+            "lint": {
+              "cache": true,
+              "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/.eslintrc.json",
+                "{workspaceRoot}/.eslintignore",
+                "{workspaceRoot}/eslint.config.mjs",
+                "{workspaceRoot}/tools/eslint-rules/**/*"
+              ],
+              "executor": "@nx/eslint:lint",
+              "configurations": {},
+              "options": {},
+              "parallelism": true
+            }
+          },
+          "name": "employees-ui",
+          "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/employees/ui/src",
+          "prefix": "lib",
+          "projectType": "library",
+          "tags": [
+            "domain:employees",
+            "type:ui"
+          ],
+          "implicitDependencies": []
+        }
+      },
+      "time-feature": {
+        "name": "time-feature",
+        "type": "lib",
+        "data": {
+          "root": "libs/time/feature",
+          "targets": {
+            "lint": {
+              "cache": true,
+              "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/.eslintrc.json",
+                "{workspaceRoot}/.eslintignore",
+                "{workspaceRoot}/eslint.config.mjs",
+                "{workspaceRoot}/tools/eslint-rules/**/*"
+              ],
+              "executor": "@nx/eslint:lint",
+              "configurations": {},
+              "options": {},
+              "parallelism": true
+            }
+          },
+          "name": "time-feature",
+          "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/time/feature/src",
+          "prefix": "lib",
+          "projectType": "library",
+          "tags": [
+            "domain:time",
+            "type:feature"
+          ],
+          "implicitDependencies": []
+        }
+      },
+      "shared-ui": {
+        "name": "shared-ui",
+        "type": "lib",
+        "data": {
+          "root": "libs/shared/ui",
+          "targets": {
+            "lint": {
+              "cache": true,
+              "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/.eslintrc.json",
+                "{workspaceRoot}/.eslintignore",
+                "{workspaceRoot}/eslint.config.mjs",
+                "{workspaceRoot}/tools/eslint-rules/**/*"
+              ],
+              "executor": "@nx/eslint:lint",
+              "configurations": {},
+              "options": {},
+              "parallelism": true
+            }
+          },
+          "name": "shared-ui",
+          "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/shared/ui/src",
+          "prefix": "lib",
+          "projectType": "library",
+          "tags": [
+            "domain:shared",
+            "type:ui"
+          ],
+          "implicitDependencies": []
+        }
+      },
+      "leave-ui": {
+        "name": "leave-ui",
+        "type": "lib",
+        "data": {
+          "root": "libs/leave/ui",
+          "targets": {
+            "lint": {
+              "cache": true,
+              "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/.eslintrc.json",
+                "{workspaceRoot}/.eslintignore",
+                "{workspaceRoot}/eslint.config.mjs",
+                "{workspaceRoot}/tools/eslint-rules/**/*"
+              ],
+              "executor": "@nx/eslint:lint",
+              "configurations": {},
+              "options": {},
+              "parallelism": true
+            }
+          },
+          "name": "leave-ui",
+          "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/leave/ui/src",
+          "prefix": "lib",
+          "projectType": "library",
+          "tags": [
+            "domain:leave",
+            "type:ui"
+          ],
+          "implicitDependencies": []
+        }
+      },
+      "time-ui": {
+        "name": "time-ui",
+        "type": "lib",
+        "data": {
+          "root": "libs/time/ui",
+          "targets": {
+            "lint": {
+              "cache": true,
+              "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/.eslintrc.json",
+                "{workspaceRoot}/.eslintignore",
+                "{workspaceRoot}/eslint.config.mjs",
+                "{workspaceRoot}/tools/eslint-rules/**/*"
+              ],
+              "executor": "@nx/eslint:lint",
+              "configurations": {},
+              "options": {},
+              "parallelism": true
+            }
+          },
+          "name": "time-ui",
+          "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/time/ui/src",
+          "prefix": "lib",
+          "projectType": "library",
+          "tags": [
+            "domain:time",
+            "type:ui"
+          ],
+          "implicitDependencies": []
+        }
+      }
+    },
+    "dependencies": {
+      "employeer-management-portal": [],
+      "employees-data-access": [],
+      "employees-domain-api": [],
+      "employees-feature": [],
+      "leave-data-access": [],
+      "leave-domain-api": [],
+      "time-data-access": [],
+      "time-domain-api": [],
+      "leave-feature": [],
+      "employees-ui": [],
+      "time-feature": [],
+      "shared-ui": [],
+      "leave-ui": [],
+      "time-ui": []
+    }
+  }
+}
