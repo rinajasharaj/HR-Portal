@@ -11,7 +11,10 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.117.1",
     "@nx/devkit": "^23.1.1",
+    "dotenv": "^17.4.2",
+    "openai": "^7.4.0",
     "tsx": "^4.23.12",
     "typescript": "^7.0.2"
   }
