@@ -1,0 +1,41 @@
+<section class="leave-request-page">
+  <h1>Request Leave</h1>
+
+  @if (submitted()) {
+    <p class="confirmation">Your leave request has been submitted.</p>
+  }
+
+  <form class="leave-request-form" (submit)="$event.preventDefault(); submit()">
+    <label>
+      Start date
+      <input
+        type="date"
+        [value]="startDate()"
+        (input)="updateStartDate($any($event.target).value)"
+        required
+      />
+    </label>
+
+    <label>
+      End date
+      <input
+        type="date"
+        [value]="endDate()"
+        (input)="updateEndDate($any($event.target).value)"
+        required
+      />
+    </label>
+
+    <label>
+      Reason
+      <textarea
+        rows="3"
+        [value]="reason()"
+        (input)="updateReason($any($event.target).value)"
+        required
+      ></textarea>
+    </label>
+
+    <button type="submit">Submit request</button>
+  </form>
+</section>
