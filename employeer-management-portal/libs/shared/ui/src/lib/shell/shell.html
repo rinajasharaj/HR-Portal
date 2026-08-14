@@ -1,0 +1,17 @@
+<div class="layout">
+  <aside class="sidebar">
+    @for (item of navItems(); track item.route) {
+      <a [routerLink]="item.route">{{ item.label }}</a>
+    }
+  </aside>
+
+  <main class="content">
+    <tui-breadcrumbs>
+      @for (crumb of breadcrumbs(); track crumb) {
+        <a *tuiItem>{{ crumb }}</a>
+      }
+    </tui-breadcrumbs>
+
+    <router-outlet />
+  </main>
+</div>

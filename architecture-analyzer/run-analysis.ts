@@ -203,7 +203,7 @@ export async function runAnalysis(graphPath: string) {
 // --- Allow running this file directly from the terminal, same as before ---
 
 if (require.main === module) {
-    runAnalysis('../employeer-management-portal/graph-output.json').then((analysisRun) => {
+    runAnalysis('../hr-portal-web/graph-output.json').then((analysisRun) => {
         const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
         const filename = `analysis-run-${timestamp}.json`;
         writeFileSync(filename, JSON.stringify(analysisRun, null, 2));

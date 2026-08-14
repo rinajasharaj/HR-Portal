@@ -1,0 +1,6 @@
+<tui-textfield>
+  @if(label()) {
+    <label tuiLabel>{{ label() }}</label>
+  }
+  <input tuiInput [(ngModel)]="value" />
+</tui-textfield>

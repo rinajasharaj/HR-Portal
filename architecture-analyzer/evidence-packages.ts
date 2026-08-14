@@ -1,6 +1,6 @@
 import { readFileSync } from 'fs';
 
-const graphData = JSON.parse(readFileSync('../employeer-management-portal/graph-output.json', 'utf-8'));
+const graphData = JSON.parse(readFileSync('../hr-portal-web/graph-output.json', 'utf-8'));
 
 const nodes = graphData.graph.nodes;
 const dependencies = graphData.graph.dependencies;

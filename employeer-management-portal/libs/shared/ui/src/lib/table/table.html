@@ -1,0 +1,16 @@
+<table tuiTable [columns]="columns()">
+  <thead>
+  <tr tuiThGroup>
+    @for (col of columns(); track col) {
+      <th tuiTh>{{ col }}</th>
+    }
+  </tr>
+  </thead>
+  <tbody tuiTbody>
+  <ng-content />
+  </tbody>
+</table>
+
+@if (totalPages() > 1) {
+  <tui-pagination [length]="totalPages()" [(index)]="currentPage" />
+}
