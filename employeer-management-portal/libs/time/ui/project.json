@@ -4,7 +4,7 @@
   "sourceRoot": "libs/time/ui/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": [],
+  "tags": ["domain:time", "type:ui"],
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint"

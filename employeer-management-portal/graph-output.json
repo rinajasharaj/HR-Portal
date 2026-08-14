@@ -478,7 +478,10 @@
           "sourceRoot": "libs/shared/ui/src",
           "prefix": "lib",
           "projectType": "library",
-          "tags": [],
+          "tags": [
+            "domain:shared",
+            "type:ui"
+          ],
           "implicitDependencies": []
         }
       },
@@ -543,7 +546,10 @@
           "sourceRoot": "libs/time/ui/src",
           "prefix": "lib",
           "projectType": "library",
-          "tags": [],
+          "tags": [
+            "domain:time",
+            "type:ui"
+          ],
           "implicitDependencies": []
         }
       }
@@ -557,18 +563,7 @@
       "leave-domain-api": [],
       "time-data-access": [],
       "time-domain-api": [],
-      "leave-feature": [
-        {
-          "source": "leave-feature",
-          "target": "employees-data-access",
-          "type": "static"
-        },
-        {
-          "source": "leave-feature",
-          "target": "time-feature",
-          "type": "static"
-        }
-      ],
+      "leave-feature": [],
       "employees-ui": [],
       "time-feature": [
         {
