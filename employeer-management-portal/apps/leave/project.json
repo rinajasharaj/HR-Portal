@@ -1,33 +1,33 @@
 {
-  "name": "employees",
+  "name": "leave",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "prefix": "app",
-  "sourceRoot": "apps/employees/src",
+  "sourceRoot": "apps/leave/src",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@angular-architects/native-federation:build",
-      "defaultConfiguration": "production",
       "options": {
         "cacheExternalArtifacts": true,
-        "tsConfig": "apps/employees/tsconfig.federation.json"
+        "tsConfig": "apps/leave/tsconfig.federation.json"
       },
       "configurations": {
         "production": {
-          "target": "employees:esbuild:production"
+          "target": "leave:esbuild:production"
         },
         "development": {
-          "target": "employees:esbuild:development",
+          "target": "leave:esbuild:development",
           "dev": true
         }
-      }
+      },
+      "defaultConfiguration": "production"
     },
     "serve": {
       "executor": "@angular-architects/native-federation:build",
       "options": {
-        "target": "employees:serve-original:development",
-        "tsConfig": "apps/employees/tsconfig.federation.json",
+        "target": "leave:serve-original:development",
+        "tsConfig": "apps/leave/tsconfig.federation.json",
         "rebuildDelay": 500,
         "cacheExternalArtifacts": true,
         "dev": true,
@@ -42,8 +42,8 @@
       "continuous": true,
       "executor": "@nx/web:file-server",
       "options": {
-        "buildTarget": "employees:build",
-        "staticFilePath": "dist/apps/employees/browser",
+        "buildTarget": "leave:build",
+        "staticFilePath": "dist/apps/leave/browser",
         "spa": true
       }
     },
@@ -54,18 +54,18 @@
       ],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/apps/employees",
-        "browser": "apps/employees/src/main.ts",
-        "tsConfig": "apps/employees/tsconfig.app.json",
+        "outputPath": "dist/apps/leave",
+        "browser": "apps/leave/src/main.ts",
+        "tsConfig": "apps/leave/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/employees/public"
+            "input": "apps/leave/public"
           }
         ],
         "styles": [
-          "apps/employees/src/styles.scss"
+          "apps/leave/src/styles.scss"
         ],
         "polyfills": [
           "es-module-shims"
@@ -98,16 +98,16 @@
       "continuous": true,
       "executor": "@angular/build:dev-server",
       "defaultConfiguration": "development",
-      "options": {
-        "port": 4201
-      },
       "configurations": {
         "production": {
-          "buildTarget": "employees:esbuild:production"
+          "buildTarget": "leave:esbuild:production"
         },
         "development": {
-          "buildTarget": "employees:esbuild:development"
+          "buildTarget": "leave:esbuild:development"
         }
+      },
+      "options": {
+        "port": 4202
       }
     }
   }

@@ -1,13 +1,12 @@
 import { withNativeFederation, shareAll } from '@angular-architects/native-federation/config';
 
 export default withNativeFederation({
-  name: 'employeer-management-portal',
-  remotes: {
-    "employees": "http://localhost:4201/remoteEntry.json",
-    "leave": "http://localhost:4202/remoteEntry.json"
-  },
+  name: 'leave',
+
+
+
   exposes: {
-    './Component': './apps/employeer-management-portal/src/app/app.ts',
+    './Component': './apps/leave/src/app/app.ts',
   },
 
   shared: {
