@@ -1,7 +1,35 @@
-<lib-card title="Edit Profile">
-  <lib-input label="Name" [(value)]="name" />
-  <lib-input label="Role" [(value)]="role" />
-  <lib-input label="Department" [(value)]="department" />
+@if (employee(); as emp) {
+  <lib-card [title]="emp.name">
+    <div class="profile-header">
+      <div>
+        <div class="role">{{ emp.role }}</div>
+        <div class="dept">{{ emp.department }}</div>
+      </div>
+      <lib-leave-status-badge [status]="emp.status" />
+    </div>
 
-  <lib-button (click)="save()">Save</lib-button>
-</lib-card>
+    <dl class="fields">
+      <dt>Email</dt>
+      <dd>{{ emp.email }}</dd>
+
+      <dt>Department</dt>
+      <dd>{{ emp.department }}</dd>
+
+      <dt>Start date</dt>
+      <dd>{{ formatStart(emp.startDate) }}</dd>
+
+      <dt>Manager</dt>
+      <dd>{{ managerName() }}</dd>
+    </dl>
+
+    <div class="actions">
+      <lib-button variant="secondary" (click)="back()">Back</lib-button>
+      <lib-button variant="primary" (click)="edit()">Edit</lib-button>
+    </div>
+  </lib-card>
+} @else {
+  <lib-card title="Not found">
+    <p>That employee does not exist.</p>
+    <lib-button variant="secondary" (click)="back()">Back to list</lib-button>
+  </lib-card>
+}

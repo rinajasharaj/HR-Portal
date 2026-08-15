@@ -1,0 +1,12 @@
+<lib-card title="Time history">
+  <ul class="history">
+    @for (week of history(); track week.weekLabel) {
+      <li class="history-item">
+        <span class="week">{{ week.weekLabel }}</span>
+        <span class="hours">{{ week.totalHours }} h</span>
+      </li>
+    } @empty {
+      <li class="empty">No past weeks recorded.</li>
+    }
+  </ul>
+</lib-card>

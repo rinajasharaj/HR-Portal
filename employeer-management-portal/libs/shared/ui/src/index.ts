@@ -5,4 +5,5 @@ export * from './lib/card/card';
 export * from './lib/table/table';
 export * from './lib/shell/shell';
 export * from './lib/models/nav-items';
-// export * from './lib/leave-status-badge/leave-status-badge.component';
+export * from './lib/models/activity-event';
+export * from './lib/current-user/current-user.service';

@@ -1,0 +1,26 @@
+.filter-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.filter-label {
+  font-weight: 600;
+  color: #555;
+}
+
+.row {
+  cursor: pointer;
+}
+
+.row:hover td {
+  background: #f0f4ff;
+}
+
+.empty {
+  text-align: center;
+  color: #888;
+  padding: 16px;
+}

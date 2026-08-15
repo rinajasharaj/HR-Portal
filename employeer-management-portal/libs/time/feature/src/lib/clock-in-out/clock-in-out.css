@@ -1,0 +1,20 @@
+.status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #c4c8d0;
+  flex-shrink: 0;
+}
+
+.dot.on {
+  background: #1b7a43;
+  box-shadow: 0 0 0 4px rgba(27, 122, 67, 0.15);
+}

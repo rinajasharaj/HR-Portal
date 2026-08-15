@@ -1,0 +1,25 @@
+<div class="balance-grid">
+  @for (b of balances(); track b.leaveType) {
+    <lib-card>
+      <div class="bal-type">{{ b.leaveType }}</div>
+
+      @if (b.entitled > 0) {
+        <div class="bal-numbers">
+          <span class="used">{{ b.used }}</span>
+          <span class="sep">/</span>
+          <span class="entitled">{{ b.entitled }} days</span>
+        </div>
+        <div class="bar">
+          <div class="bar-fill" [style.width.%]="pct(b)"></div>
+        </div>
+        <div class="remaining">{{ remaining(b) }} days remaining</div>
+      } @else {
+        <div class="bal-numbers">
+          <span class="used">{{ b.used }}</span>
+          <span class="entitled">days used</span>
+        </div>
+        <div class="remaining">No fixed entitlement</div>
+      }
+    </lib-card>
+  }
+</div>

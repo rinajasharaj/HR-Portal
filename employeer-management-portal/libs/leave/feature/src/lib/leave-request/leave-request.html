@@ -1,7 +1,31 @@
-<lib-card title="Request Leave">
-  <lib-input label="Start Date" [(value)]="startDate" />
-  <lib-input label="End Date" [(value)]="endDate" />
-  <lib-input label="Reason" [(value)]="reason" />
+<lib-card title="Request leave">
+  <div class="form">
+    <lib-input label="Start date (YYYY-MM-DD)" [(value)]="startDate" />
+    <lib-input label="End date (YYYY-MM-DD)" [(value)]="endDate" />
 
-  <lib-button (click)="submit()">Submit Request</lib-button>
+    <div class="type-field">
+      <span class="field-label">Leave type</span>
+      <div class="type-options">
+        @for (type of leaveTypes; track type) {
+          <lib-button
+            [variant]="leaveType() === type ? 'primary' : 'secondary'"
+            (click)="setType(type)"
+          >
+            {{ type }}
+          </lib-button>
+        }
+      </div>
+    </div>
+
+    <lib-input label="Reason" [(value)]="reason" />
+  </div>
+
+  <div class="actions">
+    <lib-button variant="secondary" (click)="cancel()">Cancel</lib-button>
+    <lib-button variant="primary" (click)="submit()">Submit</lib-button>
+  </div>
+
+  @if (!canSubmit()) {
+    <p class="hint">Fill in start date, end date, and a reason to submit.</p>
+  }
 </lib-card>

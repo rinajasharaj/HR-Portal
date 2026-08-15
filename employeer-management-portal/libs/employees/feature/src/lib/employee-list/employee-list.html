@@ -1,14 +1,32 @@
 <lib-card title="Employees">
+  <div class="filter-bar">
+    <span class="filter-label">Department:</span>
+    @for (dept of departments(); track dept) {
+      <lib-button
+        [variant]="departmentFilter() === dept ? 'primary' : 'secondary'"
+        (click)="setDepartment(dept)"
+      >
+        {{ dept }}
+      </lib-button>
+    }
+  </div>
+
   <lib-table
-    [columns]="['Name', 'Role', 'Department']"
-    [totalItems]="employees().length"
+    #tbl
+    [columns]="columns"
+    [totalItems]="filtered().length"
     [pageSize]="pageSize"
   >
-    @for (emp of pagedEmployees(); track emp.name) {
-      <tr>
+    @for (emp of paged(tbl.currentPage()); track emp.id) {
+      <tr class="row" (click)="open(emp.id)">
         <td>{{ emp.name }}</td>
         <td>{{ emp.role }}</td>
         <td>{{ emp.department }}</td>
+        <td><lib-leave-status-badge [status]="emp.status" /></td>
+      </tr>
+    } @empty {
+      <tr>
+        <td colspan="4" class="empty">No employees in this department.</td>
       </tr>
     }
   </lib-table>

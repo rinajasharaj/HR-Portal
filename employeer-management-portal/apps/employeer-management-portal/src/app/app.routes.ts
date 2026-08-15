@@ -1,28 +1,28 @@
 import { loadRemoteModule } from '@angular-architects/native-federation';
-import { Routes } from "@angular/router";
-import {ClockInOut, WeeklyTimesheet} from "@employeer-management-portal/time-feature";
+import { Routes } from '@angular/router';
+import {
+  ClockInOut,
+  WeeklyTimesheet,
+  TimeHistory,
+} from '@employeer-management-portal/time-feature';
 
 export const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
+  {
+    path: 'dashboard',
+    loadComponent: () => import('./dashboard/dashboard').then((m) => m.Dashboard),
+  },
   {
     path: 'employees',
-    loadComponent: () =>
-      loadRemoteModule('employees', './Component').then((m) => m.App)
+    loadChildren: () =>
+      loadRemoteModule('employees', './routes').then((m) => m.routes),
   },
   {
     path: 'leave',
-    loadComponent: () =>
-      loadRemoteModule('leave', './Component').then((m) => m.App)
+    loadChildren: () =>
+      loadRemoteModule('leave', './routes').then((m) => m.routes),
   },
-  {
-    path: 'dashboard',
-    loadComponent: () => import('./dashboard/dashboard').then(m => m.Dashboard)
-  },
-  {
-    path: 'time',
-    component: WeeklyTimesheet
-  },
-  {
-    path: 'time/clock',
-    component: ClockInOut
-  }
+  { path: 'time', component: WeeklyTimesheet },
+  { path: 'time/clock', component: ClockInOut },
+  { path: 'time/history', component: TimeHistory },
 ];

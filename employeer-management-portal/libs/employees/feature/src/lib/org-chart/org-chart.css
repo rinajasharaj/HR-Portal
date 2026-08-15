@@ -1,0 +1,41 @@
+.org,
+.org ul {
+  list-style: none;
+  margin: 0;
+  padding-left: 24px;
+}
+
+.org > li {
+  padding-left: 0;
+}
+
+.org li {
+  position: relative;
+  padding: 6px 0;
+}
+
+.node {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 1px solid #dfe3eb;
+  border-radius: 8px;
+  background: #fff;
+  padding: 8px 14px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.node:hover {
+  border-color: #2b5cc4;
+  background: #f0f4ff;
+}
+
+.node-name {
+  font-weight: 600;
+}
+
+.node-role {
+  font-size: 12px;
+  color: #777;
+}

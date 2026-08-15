@@ -1,0 +1,30 @@
+.history {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 4px;
+  border-bottom: 1px solid #eee;
+}
+
+.history-item:last-child {
+  border-bottom: none;
+}
+
+.week {
+  color: #444;
+}
+
+.hours {
+  font-weight: 600;
+  color: #2b5cc4;
+}
+
+.empty {
+  color: #888;
+  padding: 12px 4px;
+}

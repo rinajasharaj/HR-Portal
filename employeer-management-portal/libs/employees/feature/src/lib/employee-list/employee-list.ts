@@ -1,24 +1,42 @@
-import { Component, signal, computed } from '@angular/core';
-import { Table, Card } from '@employeer-management-portal/shared-ui';
-import { Employee } from '@employeer-management-portal/employees-domain-api';
+import { Component, computed, inject, signal } from '@angular/core';
+import { Router } from '@angular/router';
+import { Table, Card, ButtonComponent } from '@employeer-management-portal/shared-ui';
+import { EmployeesStore } from '@employeer-management-portal/employees-data-access';
+// Study-case boundary violation: employees (domain:employees) importing leave/ui (domain:leave).
+import { LeaveStatusBadgeComponent } from '@employeer-management-portal/leave-ui';
 
 @Component({
   selector: 'lib-employee-list',
-  imports: [Table, Card],
+  imports: [Table, Card, ButtonComponent, LeaveStatusBadgeComponent],
   templateUrl: './employee-list.html',
   styleUrl: './employee-list.css',
 })
 export class EmployeeList {
-  pageSize = 5;
+  private readonly store = inject(EmployeesStore);
+  private readonly router = inject(Router);
 
-  employees = signal<Employee[]>([
-    { name: 'Ana Marku', role: 'Frontend Engineer', department: 'Engineering' },
-    { name: 'Bledi Hoxha', role: 'HR Manager', department: 'Human Resources' },
-    { name: 'Elira Krasniqi', role: 'Backend Engineer', department: 'Engineering' },
-    { name: 'Gent Sula', role: 'Product Manager', department: 'Product' },
-    { name: 'Klaudia Berisha', role: 'Designer', department: 'Design' },
-    { name: 'Fatjon Rama', role: 'QA Engineer', department: 'Engineering' }
-  ]);
+  readonly columns = ['Name', 'Role', 'Department', 'Status'];
+  readonly pageSize = 5;
 
-  pagedEmployees = computed(() => this.employees().slice(0, this.pageSize));
+  readonly departmentFilter = signal<string>('All');
+  readonly departments = computed(() => ['All', ...this.store.departments()]);
+
+  readonly filtered = computed(() => {
+    const dept = this.departmentFilter();
+    const all = this.store.employees();
+    return dept === 'All' ? all : all.filter((e) => e.department === dept);
+  });
+
+  paged(page: number) {
+    const start = page * this.pageSize;
+    return this.filtered().slice(start, start + this.pageSize);
+  }
+
+  setDepartment(dept: string): void {
+    this.departmentFilter.set(dept);
+  }
+
+  open(id: string): void {
+    this.router.navigate(['/employees', id]);
+  }
 }

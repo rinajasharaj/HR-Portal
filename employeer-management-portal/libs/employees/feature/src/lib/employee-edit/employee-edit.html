@@ -1,0 +1,20 @@
+@if (found()) {
+  <lib-card title="Edit employee">
+    <div class="form">
+      <lib-input label="Name" [(value)]="name" />
+      <lib-input label="Role" [(value)]="role" />
+      <lib-input label="Department" [(value)]="department" />
+      <lib-input label="Email" [(value)]="email" />
+    </div>
+
+    <div class="actions">
+      <lib-button variant="secondary" (click)="cancel()">Cancel</lib-button>
+      <lib-button variant="primary" (click)="save()">Save</lib-button>
+    </div>
+  </lib-card>
+} @else {
+  <lib-card title="Not found">
+    <p>That employee does not exist.</p>
+    <lib-button variant="secondary" (click)="cancel()">Back to list</lib-button>
+  </lib-card>
+}

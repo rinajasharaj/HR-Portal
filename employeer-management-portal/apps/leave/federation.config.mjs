@@ -7,6 +7,7 @@ export default withNativeFederation({
 
   exposes: {
     './Component': './apps/leave/src/app/app.ts',
+    './routes': './apps/leave/src/app/app.routes.ts',
   },
 
   shared: {

@@ -1,13 +1,51 @@
-<div class="dashboard-grid">
+<h2 class="page-title">Dashboard</h2>
+
+<div class="summary-grid">
   <lib-card title="Employees">
-    <p>{{ employeeCount() }} total employees</p>
+    <div class="stat">{{ employeeCount() }}</div>
+    <div class="stat-label">Total employees</div>
   </lib-card>
 
-  <lib-card title="Leave">
-    <p>{{ pendingLeaveCount() }} pending requests</p>
+  <lib-card title="Pending leave">
+    <div class="stat">{{ pendingLeaveCount() }}</div>
+    <div class="stat-label">Requests awaiting approval</div>
   </lib-card>
 
-  <lib-card title="Time">
-    <p>{{ hoursThisWeek() }} hours logged this week</p>
+  <lib-card title="Hours this week">
+    <div class="stat">{{ hoursThisWeek() }}</div>
+    <div class="stat-label">Logged so far</div>
+  </lib-card>
+
+  <lib-card title="Upcoming leave">
+    <div class="stat">{{ upcomingLeaveCount() }}</div>
+    <div class="stat-label">Starting this month</div>
+  </lib-card>
+</div>
+
+<div class="lower-grid">
+  <lib-card title="Recent activity">
+    <ul class="activity">
+      @for (event of recentActivity(); track event.id) {
+        <li class="activity-item">
+          <span class="domain-tag domain-{{ event.domain }}">{{ event.domain }}</span>
+          <span class="activity-msg">{{ event.message }}</span>
+          @if (event.status) {
+            <lib-leave-status-badge [status]="event.status" />
+          }
+          <span class="activity-time">{{ event.timestamp }}</span>
+        </li>
+      }
+    </ul>
+  </lib-card>
+
+  <lib-card title="Quick actions">
+    <div class="quick-actions">
+      <a routerLink="/leave/request" class="qa-link">
+        <lib-button variant="primary">Request leave</lib-button>
+      </a>
+      <a routerLink="/employees" class="qa-link">
+        <lib-button variant="secondary">View employees</lib-button>
+      </a>
+    </div>
   </lib-card>
 </div>

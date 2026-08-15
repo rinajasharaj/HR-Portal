@@ -1,24 +1,45 @@
-import { Component, signal } from '@angular/core';
-import { Input as LibInput, ButtonComponent, Card } from '@employeer-management-portal/shared-ui';
-import { Employee } from '@employeer-management-portal/employees-domain-api';
+import { Component, computed, inject, signal } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Card, ButtonComponent, formatDate } from '@employeer-management-portal/shared-ui';
+import { EmployeesStore } from '@employeer-management-portal/employees-data-access';
+// Study-case boundary violation: employees domain reusing the leave/ui badge.
+import { LeaveStatusBadgeComponent } from '@employeer-management-portal/leave-ui';
 
 @Component({
   selector: 'lib-employee-profile',
-  imports: [LibInput, ButtonComponent, Card],
+  imports: [Card, ButtonComponent, LeaveStatusBadgeComponent],
   templateUrl: './employee-profile.html',
   styleUrl: './employee-profile.css',
 })
 export class EmployeeProfile {
-  name = signal('Ana Marku');
-  role = signal('Frontend Engineer');
-  department = signal('Engineering');
+  private readonly store = inject(EmployeesStore);
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
 
-  save() {
-    const updated: Employee = {
-      name: this.name(),
-      role: this.role(),
-      department: this.department()
-    };
-    console.log('Saved (mock):', updated);
+  private readonly id = signal(this.route.snapshot.paramMap.get('id'));
+
+  readonly employee = computed(() => {
+    const id = this.id();
+    return id ? this.store.getById(id) : undefined;
+  });
+
+  readonly managerName = computed(() => {
+    const emp = this.employee();
+    return emp ? this.store.managerOf(emp)?.name ?? 'None' : 'None';
+  });
+
+  formatStart(iso: string): string {
+    return formatDate(new Date(iso));
+  }
+
+  edit(): void {
+    const emp = this.employee();
+    if (emp) {
+      this.router.navigate(['/employees', emp.id, 'edit']);
+    }
+  }
+
+  back(): void {
+    this.router.navigate(['/employees']);
   }
 }

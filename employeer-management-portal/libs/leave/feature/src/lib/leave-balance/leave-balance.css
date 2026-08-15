@@ -1,0 +1,50 @@
+.balance-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.bal-type {
+  font-size: 13px;
+  font-weight: 600;
+  color: #777;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+
+.bal-numbers {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.used {
+  font-size: 28px;
+  font-weight: 800;
+  color: #2b5cc4;
+}
+
+.entitled,
+.sep {
+  color: #888;
+}
+
+.bar {
+  height: 8px;
+  border-radius: 999px;
+  background: #eef0f4;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.bar-fill {
+  height: 100%;
+  background: #2b5cc4;
+}
+
+.remaining {
+  font-size: 13px;
+  color: #555;
+}

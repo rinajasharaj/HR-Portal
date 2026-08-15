@@ -1,0 +1,24 @@
+<lib-card title="Org chart">
+  <ul class="org">
+    @for (node of tree(); track node.employee.id) {
+      <ng-container *ngTemplateOutlet="nodeTpl; context: { $implicit: node }" />
+    }
+  </ul>
+</lib-card>
+
+<ng-template #nodeTpl let-node>
+  <li>
+    <button type="button" class="node" (click)="open(node.employee.id)">
+      <span class="node-name">{{ node.employee.name }}</span>
+      <span class="node-role">{{ node.employee.role }}</span>
+    </button>
+
+    @if (node.reports.length) {
+      <ul>
+        @for (child of node.reports; track child.employee.id) {
+          <ng-container *ngTemplateOutlet="nodeTpl; context: { $implicit: child }" />
+        }
+      </ul>
+    }
+  </li>
+</ng-template>

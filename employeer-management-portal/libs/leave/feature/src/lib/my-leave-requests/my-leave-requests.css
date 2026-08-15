@@ -1,0 +1,21 @@
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.subtitle {
+  color: #666;
+}
+
+.cap {
+  text-transform: capitalize;
+}
+
+.empty {
+  text-align: center;
+  color: #888;
+  padding: 16px;
+}

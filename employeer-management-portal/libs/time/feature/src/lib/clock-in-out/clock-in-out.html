@@ -1,9 +1,14 @@
-<lib-card title="Clock In/Out">
-  @if (clockedIn()) {
-    <p>Clocked in at {{ clockInTime() }}</p>
-    <lib-button (click)="clockOut()">Clock Out</lib-button>
-  } @else {
-    <p>Not clocked in</p>
-    <lib-button (click)="clockIn()">Clock In</lib-button>
-  }
+<lib-card title="Clock in / out">
+  <div class="status">
+    <span class="dot" [class.on]="clock().clockedIn"></span>
+    @if (clock().clockedIn) {
+      <span>Clocked in since <strong>{{ sinceLabel() }}</strong></span>
+    } @else {
+      <span>Not clocked in</span>
+    }
+  </div>
+
+  <lib-button [variant]="clock().clockedIn ? 'secondary' : 'primary'" (click)="toggle()">
+    {{ clock().clockedIn ? 'Clock out' : 'Clock in' }}
+  </lib-button>
 </lib-card>

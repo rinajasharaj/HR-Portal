@@ -1,0 +1,27 @@
+<lib-card title="My leave requests">
+  <div class="toolbar">
+    <span class="subtitle">Requests for {{ user.userName() }}</span>
+    <lib-button variant="primary" (click)="requestLeave()">Request leave</lib-button>
+  </div>
+
+  <lib-table
+    #tbl
+    [columns]="columns"
+    [totalItems]="requests().length"
+    [pageSize]="pageSize"
+  >
+    @for (req of paged(tbl.currentPage()); track req.id) {
+      <tr>
+        <td class="cap">{{ req.leaveType }}</td>
+        <td>{{ fmt(req.startDate) }}</td>
+        <td>{{ fmt(req.endDate) }}</td>
+        <td>{{ req.reason }}</td>
+        <td><lib-leave-status-badge [status]="req.status" /></td>
+      </tr>
+    } @empty {
+      <tr>
+        <td colspan="5" class="empty">You have no leave requests yet.</td>
+      </tr>
+    }
+  </lib-table>
+</lib-card>

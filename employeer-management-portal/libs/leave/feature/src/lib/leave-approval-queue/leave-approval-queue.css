@@ -1,0 +1,14 @@
+.cap {
+  text-transform: capitalize;
+}
+
+.row-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.empty {
+  text-align: center;
+  color: #888;
+  padding: 16px;
+}

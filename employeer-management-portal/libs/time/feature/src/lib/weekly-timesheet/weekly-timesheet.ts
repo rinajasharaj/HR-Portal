@@ -1,21 +1,25 @@
-import { Component, signal, computed } from '@angular/core';
-import { Table, Card } from '@employeer-management-portal/shared-ui';
-import { TimesheetEntry } from '@employeer-management-portal/time-domain-api';
+import { Component, inject } from '@angular/core';
+import {
+  Card,
+  Table,
+  Input as LibInput,
+} from '@employeer-management-portal/shared-ui';
+import { TimeStore } from '@employeer-management-portal/time-data-access';
 
 @Component({
   selector: 'lib-weekly-timesheet',
-  imports: [Table, Card],
+  imports: [Card, Table, LibInput],
   templateUrl: './weekly-timesheet.html',
   styleUrl: './weekly-timesheet.css',
 })
 export class WeeklyTimesheet {
-  entries = signal<TimesheetEntry[]>([
-    { day: 'Monday', hours: 8 },
-    { day: 'Tuesday', hours: 8 },
-    { day: 'Wednesday', hours: 7.5 },
-    { day: 'Thursday', hours: 8 },
-    { day: 'Friday', hours: 6 }
-  ]);
+  private readonly store = inject(TimeStore);
 
-  totalHours = computed(() => this.entries().reduce((sum, e) => sum + e.hours, 0));
+  readonly columns = ['Day', 'Hours'];
+  readonly week = this.store.week;
+  readonly total = this.store.hoursThisWeek;
+
+  onHours(day: string, value: string): void {
+    this.store.updateHours(day, parseFloat(value));
+  }
 }

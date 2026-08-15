@@ -1,0 +1,99 @@
+.page-title {
+  margin: 0 0 16px;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.stat {
+  font-size: 34px;
+  font-weight: 800;
+  color: #2b5cc4;
+  line-height: 1.1;
+}
+
+.stat-label {
+  color: #777;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.lower-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .lower-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.activity {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 2px;
+  border-bottom: 1px solid #eee;
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.domain-tag {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 2px 8px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.domain-employees {
+  background: #eef2fb;
+  color: #2b5cc4;
+}
+
+.domain-leave {
+  background: #f3ecfb;
+  color: #7b3fbf;
+}
+
+.domain-time {
+  background: #e9f6f0;
+  color: #1b7a43;
+}
+
+.activity-msg {
+  flex: 1;
+  min-width: 0;
+}
+
+.activity-time {
+  color: #999;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.quick-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.qa-link {
+  text-decoration: none;
+}

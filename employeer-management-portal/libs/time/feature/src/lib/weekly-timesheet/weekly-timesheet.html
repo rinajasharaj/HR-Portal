@@ -1,11 +1,20 @@
-<lib-card title="This Week's Hours">
-  <lib-table [columns]="['Day', 'Hours']" [totalItems]="entries().length" [pageSize]="7">
-    @for (entry of entries(); track entry.day) {
+<lib-card title="Weekly timesheet">
+  <lib-table [columns]="columns" [totalItems]="week().length" [pageSize]="7">
+    @for (entry of week(); track entry.day) {
       <tr>
-        <td>{{ entry.day }}</td>
-        <td>{{ entry.hours }}</td>
+        <td class="day">{{ entry.day }}</td>
+        <td class="hours-cell">
+          <lib-input
+            [value]="entry.hours.toString()"
+            (valueChange)="onHours(entry.day, $event)"
+          />
+        </td>
       </tr>
     }
   </lib-table>
-  <p>Total: {{ totalHours() }} hours</p>
+
+  <div class="total">
+    <span>Weekly total</span>
+    <span class="total-value">{{ total() }} h</span>
+  </div>
 </lib-card>

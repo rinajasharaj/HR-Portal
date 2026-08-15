@@ -1,0 +1,22 @@
+.day {
+  font-weight: 600;
+}
+
+.hours-cell {
+  width: 160px;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #eee;
+  font-weight: 600;
+}
+
+.total-value {
+  font-size: 20px;
+  color: #2b5cc4;
+}

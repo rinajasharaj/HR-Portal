@@ -1,28 +1,42 @@
-import { Component, signal } from '@angular/core';
-import { Table, ButtonComponent, Card } from '@employeer-management-portal/shared-ui';
-import { LeaveRequest } from '@employeer-management-portal/leave-domain-api';
+import { Component, inject } from '@angular/core';
+import {
+  Card,
+  Table,
+  ButtonComponent,
+  CurrentUserService,
+  formatDate,
+} from '@employeer-management-portal/shared-ui';
+import { LeaveStore } from '@employeer-management-portal/leave-data-access';
 
 @Component({
   selector: 'lib-leave-approval-queue',
-  imports: [Table, ButtonComponent, Card],
+  imports: [Card, Table, ButtonComponent],
   templateUrl: './leave-approval-queue.html',
   styleUrl: './leave-approval-queue.css',
 })
 export class LeaveApprovalQueue {
-  requests = signal<LeaveRequest[]>([
-    { employeeName: 'Ana Marku', startDate: '2026-08-20', endDate: '2026-08-22', reason: 'Family trip', status: 'pending' },
-    { employeeName: 'Fatjon Rama', startDate: '2026-08-25', endDate: '2026-08-26', reason: 'Medical appointment', status: 'pending' }
-  ]);
+  private readonly store = inject(LeaveStore);
+  protected readonly user = inject(CurrentUserService);
 
-  pendingRequests = () => this.requests().filter(r => r.status === 'pending');
+  readonly columns = ['Employee', 'Type', 'From', 'To', 'Reason', 'Actions'];
+  readonly pageSize = 5;
 
-  approve(req: LeaveRequest) {
-    req.status = 'approved';
-    this.requests.set([...this.requests()]);
+  readonly pending = this.store.pendingRequests;
+
+  paged(page: number) {
+    const start = page * this.pageSize;
+    return this.pending().slice(start, start + this.pageSize);
   }
 
-  reject(req: LeaveRequest) {
-    req.status = 'rejected';
-    this.requests.set([...this.requests()]);
+  fmt(iso: string): string {
+    return formatDate(new Date(iso));
+  }
+
+  approve(id: string): void {
+    this.store.approve(id);
+  }
+
+  reject(id: string): void {
+    this.store.reject(id);
   }
 }

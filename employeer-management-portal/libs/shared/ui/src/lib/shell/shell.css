@@ -15,11 +15,41 @@
     flex-direction: column;
     flex-shrink: 0;
     height: 100%;
-    width: 200px;
+    width: 210px;
     align-items: baseline;
     background: white;
     gap: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    .brand {
+      width: 100%;
+      padding: 16px 16px 8px;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      color: #2b5cc4;
+    }
+
+    .nav-active {
+      background: #eef2fb;
+      border-radius: 8px;
+    }
+
+    .role-switch {
+      margin-top: auto;
+      width: 100%;
+      padding: 12px;
+      border-top: 1px solid #eee;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+
+      .role-label {
+        font-size: 12px;
+        color: #666;
+        text-transform: capitalize;
+      }
+    }
 
     .sidebar-item {
       display: flex;

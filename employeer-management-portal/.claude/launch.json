@@ -1,0 +1,23 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "employees-remote",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["nx", "serve", "employees"],
+      "port": 4201
+    },
+    {
+      "name": "leave-remote",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["nx", "serve", "leave"],
+      "port": 4202
+    },
+    {
+      "name": "shell",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["nx", "serve", "employeer-management-portal"],
+      "port": 4200
+    }
+  ]
+}
