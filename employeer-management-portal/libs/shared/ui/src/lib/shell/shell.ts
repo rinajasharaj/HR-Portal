@@ -3,10 +3,11 @@ import {RouterLink, RouterOutlet} from '@angular/router';
 import { TuiBreadcrumbs } from '@taiga-ui/kit';
 import { NavItem } from '../models/nav-items';
 import { TuiItem } from "@taiga-ui/cdk";
+import {TuiButton} from "@taiga-ui/core";
 
 @Component({
   selector: 'lib-shell',
-  imports: [RouterOutlet, TuiBreadcrumbs, TuiItem, RouterLink, TuiItem],
+  imports: [RouterOutlet, TuiBreadcrumbs, TuiItem, RouterLink, TuiItem, TuiButton],
   templateUrl: './shell.html',
   styleUrl: './shell.css',
 })

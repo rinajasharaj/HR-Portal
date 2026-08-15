@@ -9,5 +9,6 @@ import { TuiButton } from '@taiga-ui/core';
   templateUrl: './button.component.html'
 })
 export class ButtonComponent {
-  variant = input<'primary' | 'secondary'>('primary');
+  variant = input<'primary' | 'secondary' | 'floating'>('primary');
+  size = input<'s' | 'm' | 'l'>('s');
 }

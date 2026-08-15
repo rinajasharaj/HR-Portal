@@ -4,12 +4,12 @@ export default withNativeFederation({
   name: 'employeer-management-portal',
   remotes: {
     "employees": "http://localhost:4201/remoteEntry.json",
-    "leave": "http://localhost:4202/remoteEntry.json"
+    "leave": "http://localhost:4202/remoteEntry.json",
+
   },
   exposes: {
     './Component': './apps/employeer-management-portal/src/app/app.ts',
   },
-
   shared: {
     ...shareAll(
       { singleton: true, strictVersion: true, requiredVersion: 'auto', build: 'package' },

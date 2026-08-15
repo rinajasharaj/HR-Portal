@@ -1,2 +1,9 @@
-<app-nx-welcome></app-nx-welcome>
-<router-outlet></router-outlet>
+<lib-shell
+  [navItems]="[
+        { label: 'Dashboard', route: '/dashboard' },
+        { label: 'Employees', route: '/employees' },
+        { label: 'Leave', route: '/leave' },
+        { label: 'Time', route: '/time' }
+      ]"
+  [breadcrumbs]="['Home']"
+/>

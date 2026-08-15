@@ -58,13 +58,22 @@
         "browser": "apps/employeer-management-portal/src/main.ts",
         "tsConfig": "apps/employeer-management-portal/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
+        "stylePreprocessorOptions": {
+          "includePaths": ["node_modules"]
+        },
         "assets": [
           {
             "glob": "**/*",
             "input": "apps/employeer-management-portal/public"
+          },
+          {
+            "glob": "**/*.svg",
+            "input": "node_modules/@taiga-ui/icons/src",
+            "output": "assets/taiga-ui/icons"
           }
         ],
         "styles": [
+          "./node_modules/@taiga-ui/styles/taiga-ui-theme.less",
           "apps/employeer-management-portal/src/styles.scss"
         ],
         "polyfills": [

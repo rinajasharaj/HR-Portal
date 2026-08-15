@@ -1,0 +1,52 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.layout {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+  background: #F7F7F7;
+
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    height: 100%;
+    width: 200px;
+    align-items: baseline;
+    background: white;
+    gap: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    .sidebar-item {
+      display: flex;
+      width: 140px;
+      height: 40px;
+      align-items: anchor-center;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    a {
+      margin-left: 10px;
+    }
+
+    a:first-child {
+      margin-top: 10px;
+    }
+  }
+
+  .content {
+    flex: 1;
+    min-width: 0;
+    margin-left: 10px;
+
+    .breadcrumb {
+      margin-bottom: 10px;
+      margin-top: 5px;
+    }
+  }
+}

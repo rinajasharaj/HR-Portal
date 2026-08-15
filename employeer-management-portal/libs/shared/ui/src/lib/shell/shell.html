@@ -1,12 +1,14 @@
 <div class="layout">
   <aside class="sidebar">
     @for (item of navItems(); track item.route) {
-      <a [routerLink]="item.route">{{ item.label }}</a>
+      <a tuiButton [appearance]="'flat'" [size]="'s'" iconStart="@tui.chevron-right" [routerLink]="item.route">
+        <span class="sidebar-item">{{ item.label }}</span>
+      </a>
     }
   </aside>
 
   <main class="content">
-    <tui-breadcrumbs>
+    <tui-breadcrumbs class="breadcrumb">
       @for (crumb of breadcrumbs(); track crumb) {
         <a *tuiItem>{{ crumb }}</a>
       }
