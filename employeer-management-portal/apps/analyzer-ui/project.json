@@ -15,13 +15,24 @@
         "browser": "apps/analyzer-ui/src/main.ts",
         "tsConfig": "apps/analyzer-ui/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
+        "stylePreprocessorOptions": {
+          "includePaths": ["node_modules"]
+        },
         "assets": [
           {
             "glob": "**/*",
             "input": "apps/analyzer-ui/public"
+          },
+          {
+            "glob": "**/*.svg",
+            "input": "node_modules/@taiga-ui/icons/src",
+            "output": "assets/taiga-ui/icons"
           }
         ],
-        "styles": ["apps/analyzer-ui/src/styles.scss"]
+        "styles": [
+          "./node_modules/@taiga-ui/styles/taiga-ui-theme.less",
+          "apps/analyzer-ui/src/styles.scss"
+        ]
       },
       "configurations": {
         "production": {

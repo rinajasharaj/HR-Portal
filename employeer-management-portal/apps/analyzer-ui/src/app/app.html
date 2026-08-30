@@ -1,12 +1,36 @@
 <h1>Architecture Analyzer</h1>
 
-<button (click)="analyze('t0')">Analyze T0 (clean)</button>
-<button (click)="analyze('t1')">Analyze T1 (eroded)</button>
-<button (click)="analyze('t2')">Analyze T2 (restructured)</button>
+<div class="controls">
+  <lib-button variant="secondary" (click)="analyzeState('t0')">T0 (clean)</lib-button>
+  <lib-button variant="secondary" (click)="analyzeState('t1')">T1 (eroded)</lib-button>
+  <lib-button variant="secondary" (click)="analyzeState('t2')">T2 (restructured)</lib-button>
+  <lib-button variant="primary" (click)="analyzeLive()">Analyze current code</lib-button>
+</div>
 
-<div *ngIf="loading()">Loading...</div>
+@if (loading()) {
+  <p class="status">Running analysis — regenerating the graph can take ~20 seconds…</p>
+}
 
-<div *ngFor="let item of results()">
-  <h3>{{ item.evidence.findingType }} - {{ item.evidence.source || item.evidence.library || item.evidence.domainA }}</h3>
-  <p>{{ item.aiExplanation.explanation }}</p>
+@if (error(); as message) {
+  <p class="status status-error">{{ message }}</p>
+}
+
+<div class="findings">
+  @for (item of results(); track $index) {
+    <lib-card [title]="cardTitle(item)">
+      <p><strong>Explanation.</strong> {{ item.aiExplanation.explanation }}</p>
+      <p><strong>Consequences.</strong> {{ item.aiExplanation.consequences }}</p>
+      <p><strong>Recommended fix.</strong> {{ item.aiExplanation.recommendedFix }}</p>
+      @if (item.validationWarnings.length > 0) {
+        <p class="status-error">
+          ⚠ {{ item.validationWarnings.length }} validation warning(s) — AI mentioned
+          something not in the evidence.
+        </p>
+      }
+    </lib-card>
+  } @empty {
+    @if (!loading() && !error()) {
+      <p class="status">No results yet. Pick a state above or analyze the current code.</p>
+    }
+  }
 </div>

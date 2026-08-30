@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import { readFileSync, writeFileSync } from 'fs';
 import OpenAI from 'openai';
+import { saveRun } from './db';
 
 const client = new OpenAI();
 
@@ -190,6 +191,11 @@ export async function runAnalysis(graphPath: string) {
         const aiResult = await explainFinding(finding);
         const warnings = validateResponse(finding, aiResult, nodes);
 
+        // analysisRun.push({
+        //     evidence: finding,
+        //     aiExplanation: aiResult,
+        //     validationWarnings: warnings
+        // });
         analysisRun.push({
             evidence: finding,
             aiExplanation: aiResult,
@@ -197,13 +203,16 @@ export async function runAnalysis(graphPath: string) {
         });
     }
 
+    const runId = saveRun(graphPath, analysisRun);
+    console.log(`Saved analysis run #${runId} to database (${analysisRun.length} findings)`);
+
     return analysisRun;
 }
 
 // --- Allow running this file directly from the terminal, same as before ---
 
 if (require.main === module) {
-    runAnalysis('../employeer-management-portal/graph-output.json').then((analysisRun) => {
+    runAnalysis('../employeer-management-portal/graph-output-03.json').then((analysisRun) => {
         const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
         const filename = `analysis-run-${timestamp}.json`;
         writeFileSync(filename, JSON.stringify(analysisRun, null, 2));
