@@ -1,0 +1,13 @@
+{
+  "name": "hr-portal-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Umbrella repo: HR Portal case-study app + architecture-analyzer thesis tool",
+  "scripts": {
+    "check:architecture": "cd architecture-analyzer && npx tsx check-architecture.ts",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7"
+  }
+}

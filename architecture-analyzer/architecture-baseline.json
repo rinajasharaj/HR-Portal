@@ -1,0 +1,6 @@
+{
+  "generatedAt": "2026-08-30T13:47:09.474Z",
+  "acceptedFindings": [
+    "boundary-violation | employees-feature -> leave-ui"
+  ]
+}

@@ -1,0 +1,33 @@
+name: Architecture check
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  architecture:
+    runs-on: ubuntu-latest
+    env:
+      NX_DAEMON: 'false'
+      NX_CLOUD: 'false'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install analyzer dependencies
+        working-directory: architecture-analyzer
+        run: npm ci
+
+      - name: Install Angular workspace dependencies
+        working-directory: employeer-management-portal
+        run: npm ci
+
+      - name: Run architecture check
+        working-directory: architecture-analyzer
+        run: npx tsx check-architecture.ts

@@ -1,0 +1,1 @@
+cd architecture-analyzer && npx tsx check-architecture.ts
