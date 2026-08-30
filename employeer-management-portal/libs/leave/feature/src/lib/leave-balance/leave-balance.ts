@@ -5,6 +5,7 @@ import {
 } from '@employeer-management-portal/shared-ui';
 import { LeaveBalance } from '@employeer-management-portal/leave-domain-api';
 import { LeaveStore } from '@employeer-management-portal/leave-data-access';
+import { EmployeesStore } from '@employeer-management-portal/employees-data-access';
 
 @Component({
   selector: 'lib-leave-balance',
@@ -15,6 +16,7 @@ import { LeaveStore } from '@employeer-management-portal/leave-data-access';
 export class LeaveBalanceView {
   private readonly store = inject(LeaveStore);
   private readonly user = inject(CurrentUserService);
+  private readonly employees = inject(EmployeesStore);
 
   readonly balances = computed<LeaveBalance[]>(() => {
     this.store.requests(); // react to changes
