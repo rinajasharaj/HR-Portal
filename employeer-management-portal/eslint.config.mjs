@@ -49,6 +49,10 @@ export default [
                     {
                       sourceTag: "type:data-access",
                       onlyDependOnLibsWithTags: ["type:data-access", "type:ui", "type:domain-api"]
+                    },
+                    {
+                      sourceTag: "*",
+                      onlyDependOnLibsWithTags: ["*"]
                     }
                   ]
                 }
