@@ -14,9 +14,9 @@ app.get('/analyze/:state', async (req, res) => {
     const state = req.params.state;
 
     const graphFiles: Record<string, string> = {
-        't0': '../hr-portal-web/graph-output-t0.json',
-        't1': '../hr-portal-web/graph-output-t1.json',
-        't2': '../hr-portal-web/graph-output-t2.json'
+        't0': '../employeer-management-portal/graph-output-t0.json',
+        't1': '../employeer-management-portal/graph-output-t1.json',
+        't2': '../employeer-management-portal/graph-output-t2.json'
     };
 
     const graphPath = graphFiles[state];

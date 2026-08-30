@@ -49,6 +49,11 @@
         color: #666;
         text-transform: capitalize;
       }
+      
+      button {
+        display: flex;
+        width: 155px;
+      }
     }
 
     .sidebar-item {
