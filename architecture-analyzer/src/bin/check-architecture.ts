@@ -1,12 +1,24 @@
+/**
+ * CI / pre-push guard.
+ *
+ * Regenerates the dependency graph, runs the deterministic detectors, and
+ * compares the result against `architecture-baseline.json`. New findings that
+ * are not in the baseline fail the process (exit 1); pass `--update-baseline`
+ * to accept the current set instead.
+ *
+ * Paths are resolved relative to the analyzer's working directory, so run it
+ * from the `architecture-analyzer/` folder (that is what CI and husky do).
+ */
 import { execSync } from 'node:child_process';
-import { readFileSync, writeFileSync, existsSync } from 'node:fs';
-import { detectFindings } from './detectors';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { detectFindings, type Finding } from '../core/detectors';
+import { loadGraph } from '../core/graph';
+import { GRAPH_FILE, GRAPH_PATH, WORKSPACE_ROOT } from '../core/workspace';
 
-const GRAPH_PATH = '../employeer-management-portal/graph-output.json';
 const BASELINE_PATH = 'architecture-baseline.json';
 
 /** A short, stable string that identifies one finding. */
-function signature(f: any): string {
+function signature(f: Finding): string {
     switch (f.findingType) {
         case 'boundary-violation':
             return `boundary-violation | ${f.source} -> ${f.target}`;
@@ -23,11 +35,11 @@ function signature(f: any): string {
 
 function currentSignatures(): string[] {
     console.log('Regenerating the dependency graph...');
-    execSync('npx nx graph --file=graph-output.json', {
-        cwd: '../employeer-management-portal',
+    execSync(`npx nx graph --file=${GRAPH_FILE}`, {
+        cwd: WORKSPACE_ROOT,
         stdio: 'inherit',
     });
-    return detectFindings(GRAPH_PATH).map(signature).sort();
+    return detectFindings(loadGraph(GRAPH_PATH)).map(signature).sort();
 }
 
 // --- Mode 1: update the baseline ---
@@ -52,7 +64,7 @@ if (process.argv.includes('--update-baseline')) {
 if (!existsSync(BASELINE_PATH)) {
     console.error(
         `\nNo ${BASELINE_PATH} found. Create one first:\n` +
-        `  npx tsx check-architecture.ts --update-baseline\n`,
+            `  npm run check:update-baseline\n`,
     );
     process.exit(1);
 }
@@ -72,7 +84,7 @@ console.log(
 
 if (fixed.length > 0) {
     console.log(
-        '\nNote: these baseline findings are no longer present (consider --update-baseline):',
+        '\nNote: these baseline findings are no longer present (consider updating the baseline):',
     );
     fixed.forEach((s) => console.log(`  - ${s}`));
 }
@@ -80,9 +92,7 @@ if (fixed.length > 0) {
 if (newViolations.length > 0) {
     console.error('\n✗ PUSH BLOCKED — new architecture violation(s) not in the baseline:\n');
     newViolations.forEach((s) => console.error(`  - ${s}`));
-    console.error(
-        '\nFix them, or if intentional run:  npm run check:architecture -- --update-baseline\n',
-    );
+    console.error('\nFix them, or if intentional run:  npm run check:update-baseline\n');
     process.exit(1);
 }
 

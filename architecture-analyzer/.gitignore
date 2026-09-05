@@ -1,2 +1,10 @@
-analysis-history.db
+# secrets
+.env
 
+# analysis output (samples are kept as thesis evidence)
+output/*
+!output/.gitkeep
+!output/samples/
+
+# legacy
+analysis-history.db

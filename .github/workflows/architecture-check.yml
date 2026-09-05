@@ -30,4 +30,4 @@ jobs:
 
       - name: Run architecture check
         working-directory: architecture-analyzer
-        run: npx tsx check-architecture.ts
+        run: npm run check

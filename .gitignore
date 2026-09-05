@@ -1,2 +1,28 @@
-.env
+# Dependencies
 node_modules/
+
+# Secrets / local env
+.env
+.env.local
+.env.*.local
+
+# IDE / editors
+.idea/
+.vscode/
+*.iml
+*.sublime-workspace
+.DS_Store
+Thumbs.db
+
+# Nx
+.nx/
+
+# Build output
+dist/
+tmp/
+out-tsc/
+coverage/
+
+# Claude Code (local-only)
+.claude/settings.local.json
+.claude/worktrees/
