@@ -1,6 +1,6 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { Table, Card, ButtonComponent, BadgeComponent } from '@employeer-management-portal/leave-data-access';
+import { Table, Card, ButtonComponent, BadgeComponent } from '@employeer-management-portal/shared-ui';
 import { EmployeesStore } from '@employeer-management-portal/employees-data-access';
 
 @Component({
