@@ -4,7 +4,6 @@
   "description": "Analyzes an Nx monorepo's architecture and uses an LLM to explain detected problems.",
   "scripts": {
     "check": "tsx src/bin/check-architecture.ts",
-    "check:update-baseline": "tsx src/bin/check-architecture.ts --update-baseline",
     "analyze": "tsx src/bin/analyze.ts",
     "typecheck": "tsc --noEmit"
   },

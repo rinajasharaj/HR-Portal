@@ -42,9 +42,6 @@ Thumbs.db
 .nx/workspace-data
 .nx/migrate-runs
 
-# Live dependency-graph snapshot — regenerated on every architecture check.
-# The frozen thesis snapshots (graph-output-t0/t1/t2.json, graph-output-03.json) stay tracked.
-/graph-output.json
 .claude/worktrees
 .claude/settings.local.json
 

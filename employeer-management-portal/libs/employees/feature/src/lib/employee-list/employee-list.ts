@@ -1,13 +1,11 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { Table, Card, ButtonComponent } from '@employeer-management-portal/shared-ui';
+import { Table, Card, ButtonComponent, BadgeComponent } from '@employeer-management-portal/leave-data-access';
 import { EmployeesStore } from '@employeer-management-portal/employees-data-access';
-// Study-case boundary violation: employees (domain:employees) importing leave/ui (domain:leave).
-import { LeaveStatusBadgeComponent } from '@employeer-management-portal/leave-ui';
 
 @Component({
   selector: 'lib-employee-list',
-  imports: [Table, Card, ButtonComponent, LeaveStatusBadgeComponent],
+  imports: [Table, Card, ButtonComponent, BadgeComponent],
   templateUrl: './employee-list.html',
   styleUrl: './employee-list.css',
 })

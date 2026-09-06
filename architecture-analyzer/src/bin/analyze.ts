@@ -2,19 +2,21 @@
  * AI analysis CLI.
  *
  * Runs the full pipeline (detectors -> LLM explanation -> validation) against a
- * graph snapshot and writes the result to `output/analysis-run-<timestamp>.json`.
+ * graph snapshot and writes the result to
+ * `output/samples/analysis-run-<timestamp>.json` (committed as thesis evidence).
  *
  * Usage:
- *   npm run analyze                       # uses the default snapshot
- *   npm run analyze -- path/to/graph.json # a specific snapshot
+ *   npm run analyze                              # default snapshot (graph-snapshots/graph-output-03.json)
+ *   npm run analyze -- graph-snapshots/t1.json   # a specific snapshot
  *
  * Requires OPENAI_API_KEY in `.env`.
  */
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { runAnalysis } from '../analyze';
+import { SNAPSHOTS_DIR } from '../core/workspace';
 
-const DEFAULT_GRAPH = '../employeer-management-portal/graph-output-03.json';
-const OUTPUT_DIR = 'output';
+const DEFAULT_GRAPH = `${SNAPSHOTS_DIR}/graph-output-03.json`;
+const OUTPUT_DIR = 'output/samples';
 
 async function main() {
     const graphPath = process.argv[2] ?? DEFAULT_GRAPH;
