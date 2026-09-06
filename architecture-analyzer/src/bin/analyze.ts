@@ -12,7 +12,7 @@
  * Requires OPENAI_API_KEY in `.env`.
  */
 import { mkdirSync, writeFileSync } from 'node:fs';
-import { runAnalysis } from '../analyze';
+import { runAnalysis } from '../pipeline';
 import { SNAPSHOTS_DIR } from '../core/workspace';
 
 const DEFAULT_GRAPH = `${SNAPSHOTS_DIR}/graph-output-03.json`;
