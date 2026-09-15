@@ -1,0 +1,19 @@
+[
+  {
+    "evidence": {
+      "findingType": "boundary-violation",
+      "source": "employees-feature",
+      "sourceDomain": "employees",
+      "target": "leave-ui",
+      "targetDomain": "leave",
+      "targetType": "ui",
+      "rule": "libraries can only import another domain's domain-api, not its internal layers"
+    },
+    "aiExplanation": {
+      "explanation": "The employees-feature is importing parts of the leave-ui directly, which is a violation of architectural boundaries. According to the separation rules, only the domain-api of one domain can be imported by another domain, not its internal components or layers.",
+      "consequences": "This violation can lead to tight coupling between the employees and leave domains, making the system harder to maintain and evolve over time. It can also result in unexpected dependencies that complicate deployment and testing processes.",
+      "recommendedFix": "Refactor the employees-feature to only import the public domain-api of the leave domain instead of accessing its internal layers directly."
+    },
+    "validationWarnings": []
+  }
+]
