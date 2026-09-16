@@ -32,7 +32,8 @@ src/
     validate.ts         validateResponse(...) -> warnings about ungrounded claims
   pipeline.ts           runAnalysis(): detectors -> AI -> validation, for one snapshot
   bin/                  entry points (thin CLI wrappers)
-    check-architecture.ts   CI / pre-push guard -> core/detectors (no AI)
+    check-architecture.ts   CI / pre-push guard -> core/detectors; on violations, also
+                            calls ai/explain.ts for a plain-language explanation in the logs
     analyze.ts              `npm run analyze` -> pipeline.ts -> output/samples/analysis-run-<timestamp>.json
 
 graph-snapshots/             committed, frozen Nx graph snapshots (thesis evidence)
@@ -46,6 +47,7 @@ Run everything from this folder.
 
 ```bash
 # CI guard: fail if any architecture violation is present (used by CI + pre-push hook)
+# On failure, each violation is also explained by the LLM in the logs
 npm run check
 
 # full AI analysis of a graph snapshot (needs OPENAI_API_KEY)
@@ -57,4 +59,6 @@ npm run analyze -- graph-snapshots/graph-output-t1.json
 
 - `npm ci` in this folder, and in `../employeer-management-portal` (the graph is
   regenerated with that workspace's `nx`)
-- An `OPENAI_API_KEY` in `.env` (only for `npm run analyze`)
+- An `OPENAI_API_KEY` in `.env` — required for `npm run analyze`, and used by
+  `npm run check` to explain violations when it finds any (the check still
+  fails on violations even if this is missing or the API call errors)

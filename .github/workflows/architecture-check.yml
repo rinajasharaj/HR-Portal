@@ -30,4 +30,6 @@ jobs:
 
       - name: Run architecture check
         working-directory: architecture-analyzer
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: npm run check
