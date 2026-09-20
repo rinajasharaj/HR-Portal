@@ -1,0 +1,33 @@
+[
+  {
+    "evidence": {
+      "findingType": "boundary-violation",
+      "source": "leave-feature",
+      "sourceDomain": "leave",
+      "target": "time-feature",
+      "targetDomain": "time",
+      "targetType": "feature",
+      "rule": "libraries can only import another domain's domain-api, not its internal layers"
+    },
+    "aiExplanation": {
+      "explanation": "The problem here is that the 'leave-feature' is directly importing components or modules from the internal layers of the 'time-feature' domain. According to the architecture rule, libraries (or features) are only allowed to interact with the exposed API of another domain, not its internal implementations.",
+      "consequences": "This matters architecturally because it can lead to tight coupling between domains, making it difficult to change one domain without affecting the other. It violates the principle of separation of concerns, and can introduce bugs or complexities, especially as the system scales or evolves.",
+      "recommendedFix": "To fix this issue, refactor the 'leave-feature' to use only the public API of the 'time-feature' domain. Ensure that any needed functionalities are exposed through the domain's API and update the imports accordingly."
+    },
+    "validationWarnings": []
+  },
+  {
+    "evidence": {
+      "findingType": "circular-dependency",
+      "domainA": "leave",
+      "domainB": "time",
+      "rule": "domains should not depend on each other in both directions"
+    },
+    "aiExplanation": {
+      "explanation": "There is a situation where two domains, 'leave' and 'time', are interdependent, meaning that 'leave' relies on 'time' and vice versa. This creates a circular dependency problem where each domain's functionality affects the other, resulting in a complex and tightly coupled architecture.",
+      "consequences": "This circular dependency complicates the understanding of the architecture, makes it difficult to maintain and modify either of the domains, and can lead to situations where changes in one domain can inadvertently impact the other, increasing the risk of bugs and issues in the system.",
+      "recommendedFix": "Refactor the code to eliminate the interdependencies. Consider consolidating shared functionalities into a third domain or service that both 'leave' and 'time' can depend upon, ensuring one directional dependency."
+    },
+    "validationWarnings": []
+  }
+]

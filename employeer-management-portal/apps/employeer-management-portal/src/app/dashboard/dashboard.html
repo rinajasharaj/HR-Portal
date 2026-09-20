@@ -30,7 +30,7 @@
           <span class="domain-tag domain-{{ event.domain }}">{{ event.domain }}</span>
           <span class="activity-msg">{{ event.message }}</span>
           @if (event.status) {
-            <lib-leave-status-badge [status]="event.status" />
+            <lib-badge [status]="event.status" />
           }
           <span class="activity-time">{{ event.timestamp }}</span>
         </li>

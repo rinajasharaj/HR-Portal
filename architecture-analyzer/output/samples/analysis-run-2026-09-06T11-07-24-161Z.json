@@ -1,0 +1,19 @@
+[
+  {
+    "evidence": {
+      "findingType": "boundary-violation",
+      "source": "employees-feature",
+      "sourceDomain": "employees",
+      "target": "leave-ui",
+      "targetDomain": "leave",
+      "targetType": "ui",
+      "rule": "libraries can only import another domain's domain-api, not its internal layers"
+    },
+    "aiExplanation": {
+      "explanation": "The problem is that the 'employees-feature' source is importing layers from the 'leave-ui' target directly, which violates the architectural boundary rules. According to the established guidelines, one domain (like 'employees') should only access another domain's 'domain-api' and not its internal layers or components.",
+      "consequences": "This matters architecturally because it can lead to tight coupling between different domains, making the system harder to maintain and evolve. If one domain's internal implementation changes, it can inadvertently break functionality in another domain that is not designed to be dependent on it, thus increasing fragility of the overall architecture.",
+      "recommendedFix": "Refactor the 'employees-feature' to only import from the 'leave-ui' domain-api. Ensure that any necessary data or functionality from 'leave' is properly exposed through its domain-api, maintaining a clear boundary and adherence to separation of concerns."
+    },
+    "validationWarnings": []
+  }
+]
