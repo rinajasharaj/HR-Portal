@@ -17,8 +17,6 @@ export async function runAnalysis(graphPath: string): Promise<AnalysisItem[]> {
     const graph = loadGraph(graphPath);
     const findings = detectFindings(graph);
 
-    console.log(findings);
-
     const results: AnalysisItem[] = [];
     for (const finding of findings) {
         const aiExplanation = await explainFinding(finding);
