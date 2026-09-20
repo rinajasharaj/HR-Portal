@@ -5,7 +5,7 @@ import {
   Input as LibInput,
 } from '@employeer-management-portal/shared-ui';
 import { TimeStore } from '@employeer-management-portal/time-data-access';
-import { LeaveSummary } from '@employeer-management-portal/leave-domain-api';
+// import { LeaveSummary } from '@employeer-management-portal/leave-domain-api';
 
 @Component({
   selector: 'lib-weekly-timesheet',
