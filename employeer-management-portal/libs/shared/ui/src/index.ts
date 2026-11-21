@@ -1,4 +1,5 @@
 export * from './lib/button/button.component';
+export * from './lib/badge/badge.component';
 export * from './lib/date-utils/date-utils';
 export * from './lib/input/input';
 export * from './lib/card/card';

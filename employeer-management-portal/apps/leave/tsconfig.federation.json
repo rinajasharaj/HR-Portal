@@ -4,7 +4,6 @@
     "../../libs/leave/feature/src/index.ts",
     "../../libs/shared/ui/src/index.ts",
     "../../libs/leave/data-access/src/index.ts",
-    "../../libs/leave/ui/src/index.ts",
     "../../libs/leave/domain-api/src/index.ts",
     "src/app/app.ts",
     "src/app/app.routes.ts"

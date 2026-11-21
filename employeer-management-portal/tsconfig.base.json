@@ -27,7 +27,6 @@
       "@employeer-management-portal/leave-data-access": [
         "./libs/leave/data-access/src/index.ts"
       ],
-      "@employeer-management-portal/leave-ui": ["./libs/leave/ui/src/index.ts"],
       "@employeer-management-portal/employees-feature": [
         "./libs/employees/feature/src/index.ts"
       ],

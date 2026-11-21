@@ -4,15 +4,15 @@ import {
   Card,
   Table,
   ButtonComponent,
+  BadgeComponent,
   CurrentUserService,
   formatDate,
 } from '@employeer-management-portal/shared-ui';
 import { LeaveStore } from '@employeer-management-portal/leave-data-access';
-import { LeaveStatusBadgeComponent } from '@employeer-management-portal/leave-ui';
 
 @Component({
   selector: 'lib-my-leave-requests',
-  imports: [Card, Table, ButtonComponent, LeaveStatusBadgeComponent],
+  imports: [Card, Table, ButtonComponent, BadgeComponent],
   templateUrl: './my-leave-requests.html',
   styleUrl: './my-leave-requests.css',
 })

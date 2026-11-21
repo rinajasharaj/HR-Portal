@@ -1,2 +1,8 @@
-analysis-history.db
+# secrets
+.env
 
+# transient graph snapshot — regenerated on every `npm run check`
+.cache/
+
+# legacy
+analysis-history.db

@@ -1,13 +1,11 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Card, ButtonComponent, formatDate } from '@employeer-management-portal/shared-ui';
+import { Card, ButtonComponent, BadgeComponent, formatDate } from '@employeer-management-portal/shared-ui';
 import { EmployeesStore } from '@employeer-management-portal/employees-data-access';
-// Study-case boundary violation: employees domain reusing the leave/ui badge.
-import { LeaveStatusBadgeComponent } from '@employeer-management-portal/leave-ui';
 
 @Component({
   selector: 'lib-employee-profile',
-  imports: [Card, ButtonComponent, LeaveStatusBadgeComponent],
+  imports: [Card, ButtonComponent, BadgeComponent],
   templateUrl: './employee-profile.html',
   styleUrl: './employee-profile.css',
 })

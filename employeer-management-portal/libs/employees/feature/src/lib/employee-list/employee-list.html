@@ -22,7 +22,7 @@
         <td>{{ emp.name }}</td>
         <td>{{ emp.role }}</td>
         <td>{{ emp.department }}</td>
-        <td><lib-leave-status-badge [status]="emp.status" /></td>
+        <td><lib-badge [status]="emp.status" /></td>
       </tr>
     } @empty {
       <tr>

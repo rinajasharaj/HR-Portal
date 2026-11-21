@@ -4,7 +4,7 @@
   "private": true,
   "description": "Umbrella repo: HR Portal case-study app + architecture-analyzer thesis tool",
   "scripts": {
-    "check:architecture": "cd architecture-analyzer && npx tsx check-architecture.ts",
+    "check:architecture": "cd architecture-analyzer && npm run check",
     "prepare": "husky"
   },
   "devDependencies": {
