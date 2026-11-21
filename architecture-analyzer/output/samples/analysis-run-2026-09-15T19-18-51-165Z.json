@@ -1,0 +1,33 @@
+[
+  {
+    "evidence": {
+      "findingType": "boundary-violation",
+      "source": "leave-feature",
+      "sourceDomain": "leave",
+      "target": "time-feature",
+      "targetDomain": "time",
+      "targetType": "feature",
+      "rule": "libraries can only import another domain's domain-api, not its internal layers"
+    },
+    "aiExplanation": {
+      "explanation": "The architecture finding indicates that the leave feature is trying to access internal components of the time feature, rather than just its API. This violates the rule that libraries from one domain can only interact with the public API of another domain, not its internal structures.",
+      "consequences": "This matters architecturally because it can lead to tight coupling between the leave and time domains, making the system harder to maintain and evolve. It can also result in unexpected behaviors if internal implementations of the time feature change, which could impact the leave feature as well.",
+      "recommendedFix": "To fix this issue, the leave feature should be modified to interact only with the public API offered by the time feature. This may require creating or refactoring the API to ensure it exposes the necessary functionality needed by the leave feature."
+    },
+    "validationWarnings": []
+  },
+  {
+    "evidence": {
+      "findingType": "circular-dependency",
+      "domainA": "leave",
+      "domainB": "time",
+      "rule": "domains should not depend on each other in both directions"
+    },
+    "aiExplanation": {
+      "explanation": "The problem is that the 'leave' and 'time' domains are directly depending on each other. This means that changes or issues in one domain could negatively affect the other, causing complexity and making the system harder to maintain.",
+      "consequences": "This matters architecturally because circular dependencies can lead to tight coupling between domains, which reduces modularity. It can make the application more difficult to reason about, test, and scale. Additionally, it can create challenges in deployment and increase the likelihood of bugs arising from interdependencies.",
+      "recommendedFix": "To fix this, refactor the domain structures to eliminate the direct dependencies. Consider introducing a third domain that both 'leave' and 'time' can depend on, or clearly define the responsibilities of each domain so that they only depend in one direction."
+    },
+    "validationWarnings": []
+  }
+]

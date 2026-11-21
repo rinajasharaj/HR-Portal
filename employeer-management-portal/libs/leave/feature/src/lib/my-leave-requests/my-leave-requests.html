@@ -16,7 +16,7 @@
         <td>{{ fmt(req.startDate) }}</td>
         <td>{{ fmt(req.endDate) }}</td>
         <td>{{ req.reason }}</td>
-        <td><lib-leave-status-badge [status]="req.status" /></td>
+        <td><lib-badge [status]="req.status" /></td>
       </tr>
     } @empty {
       <tr>

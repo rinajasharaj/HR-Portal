@@ -4,7 +4,6 @@
     "../../libs/employees/feature/src/index.ts",
     "../../libs/shared/ui/src/index.ts",
     "../../libs/employees/data-access/src/index.ts",
-    "../../libs/leave/ui/src/index.ts",
     "../../libs/employees/domain-api/src/index.ts",
     "src/app/app.ts",
     "src/app/app.routes.ts"

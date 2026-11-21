@@ -30,4 +30,6 @@ jobs:
 
       - name: Run architecture check
         working-directory: architecture-analyzer
-        run: npx tsx check-architecture.ts
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: npm run check

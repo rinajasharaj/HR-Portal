@@ -3,17 +3,16 @@ import { RouterLink } from '@angular/router';
 import {
   Card,
   ButtonComponent,
+  BadgeComponent,
   ActivityEvent,
 } from '@employeer-management-portal/shared-ui';
 import { EmployeesFacade } from '@employeer-management-portal/employees-domain-api';
 import { LeaveFacade } from '@employeer-management-portal/leave-domain-api';
 import { TimeFacade } from '@employeer-management-portal/time-domain-api';
-// Study-case boundary violation: the shell dashboard reusing the leave/ui badge.
-import { LeaveStatusBadgeComponent } from '@employeer-management-portal/leave-ui';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [Card, ButtonComponent, RouterLink, LeaveStatusBadgeComponent],
+  imports: [Card, ButtonComponent, RouterLink, BadgeComponent],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
